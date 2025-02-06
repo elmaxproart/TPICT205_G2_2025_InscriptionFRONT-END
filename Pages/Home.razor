@@ -1,0 +1,515 @@
+﻿@page "/"
+@using gradeManager.Layout.Componentes
+@inject NavigationManager Navigation
+
+<div class="page-container">
+    <NavBar />
+
+
+    <!-- Section Héro -->
+    <section id="hero" class="hero-section ">
+        <div class="hero-content">
+            <h2>Bienvenue dans GradeManager</h2>
+            <p>La solution ultime pour la gestion des notes universitaires</p>
+            <button class="btn-primary" onclick="openLoginModal()">Commencer</button>
+            <img src="/3025792-etudiant-homme-avec-ordinateur-portable-online-education-concept-vectoriel (1).jpg" alt="Illustration" class="floating-image" />
+        </div>
+    </section>
+    <!-- Modale de Connexion -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Connexion</h2>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Mot de passe" required>
+            <button class="btn-primary">Se connecter</button>
+            <p>Pas encore de compte ? <a href="#" onclick="openRegisterModal()">S'inscrire</a></p>
+        </div>
+    </div>
+
+    <!-- Modal d'inscription -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Inscription</h2>
+
+            <input type="text" placeholder="Nom complet">
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Mot de passe">
+            <input type="password" placeholder="Confirmer le mot de passe">
+
+            <button class="btn-submit">S'inscrire</button>
+
+            <p>Ou</p>
+
+            <div class="social-login">
+                <button class="google-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google">
+                    Connexion avec Google
+                </button>
+                <button class="github-btn">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                    Connexion avec GitHub
+                </button>
+            </div>
+            <p>deja un  compte ? <a href="#" onclick="openLoginModal()">Se connecter</a></p>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Section À propos -->
+    <section id="about" class="about-section">
+        <h2>À propos de nous</h2>
+        <p>
+            GradeManager est une application moderne et intuitive conçue pour aider les universités à gérer efficacement les notes et les performances académiques.
+            Notre plateforme offre des outils avancés pour le suivi des résultats étudiants, l'analyse des performances et bien plus encore.
+        </p>
+    </section>
+
+    <!-- Section Fonctionnalités -->
+    <section id="features" class="features-section">
+        <h2>Fonctionnalités</h2>
+        <div class="features-grid">
+            <div class="feature-card "data-oas>
+                <h3>Gestion des notes</h3>
+                <p>Saisie, modification et suivi des notes en temps réel.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Analyses avancées</h3>
+                <p>Graphiques et rapports pour suivre l'évolution des performances.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Interface intuitive</h3>
+                <p>Une expérience utilisateur moderne et conviviale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+        <h2>Contactez-nous</h2>
+        <p>
+            Vous avez des questions ou souhaitez en savoir plus ? N'hésitez pas à nous contacter !
+        </p>
+        <form class="contact-form">
+            <input type="text" placeholder="Votre nom" />
+            <input type="email" placeholder="Votre email" />
+            <textarea placeholder="Votre message"></textarea>
+            <button type="submit" class="btn-secondary">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <p>&copy; 2025 GradeManager. Tous droits réservés.</p>
+    </footer>
+</div>
+
+@code {
+    private void NavigateToLogin()
+    {
+        Navigation.NavigateTo("/login");
+    }
+}
+
+<style>
+
+
+    body {
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: black;
+    }
+    
+
+    /* Conteneur de la page avec fond animé en dégradé */
+    .page-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #3a3f58);
+     
+        animation: gradientAnimation 15s ease infinite;
+       width: 100%;
+    }
+
+    /* Animation du dégradé */
+    @@keyframes gradientAnimation {
+        0%
+
+    {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+    }
+
+    /* Section Héro */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary {
+        background-color: #6a0dad;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #7b1fa2;
+            transform: scale(1.05);
+        }
+
+    /* Section À propos */
+    .about-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+    /* Section Fonctionnalités */
+    .features-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+        }
+
+    /* Section Contact */
+    .contact-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+            .contact-form input::placeholder,
+            .contact-form textarea::placeholder {
+                color: #888;
+            }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+    .btn-secondary {
+        background-color: #3a3f58;
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #4a4f68;
+            transform: scale(1.05);
+        }
+
+    /* Pied de page */
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.4);
+        font-size: 0.9rem;
+    }
+
+    .floating-image {
+        position: absolute;
+        top: 250px;
+        right: 20px;
+        width: 500px; 
+        height: auto; 
+        animation: floatAnimation 4s ease-in-out infinite;
+        
+    }
+
+
+    @@keyframes floatAnimation {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+</style>
+<script>
+     //effet de scroll
+    AOS.init({
+        duration: 1200, // Animation duration in milliseconds
+        once: true,     // Whether animation should happen only once
+    });
+</script>
+<!-- Styles des modales -->
+<style>
+    /* Style de la modal */
+    .modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #4b0082, #1e1e60); /* Violet à Bleu Nuit */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 350px;
+        position: relative;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        color: white;
+        transform: translateY(-20px);
+        opacity: 0;
+        animation: slideIn 0.5s forwards ease-in-out;
+    }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        /* Style des champs */
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+            .modal-content input::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+    /* Bouton S'inscrire */
+    .btn-submit {
+        background: #ff4081;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-submit:hover {
+            background: #ff0055;
+        }
+
+    /* Bouton de fermeture */
+    .close {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+        .close:hover {
+            color: #ff4081;
+        }
+
+    /* Boutons de connexion Google et GitHub */
+    .social-login {
+        margin-top: 10px;
+    }
+
+        .social-login button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+            margin-bottom: 8px;
+        }
+
+    .google-btn {
+        background: white;
+        color: black;
+    }
+
+    .github-btn {
+        background: #333;
+        color: white;
+    }
+
+        .google-btn img, .github-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+    .google-btn:hover {
+        background: #ddd;
+    }
+
+    .github-btn:hover {
+        background: #555;
+    }
+
+    /* Animation d'apparition */
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+    }
+
+    @@keyframes slideIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+</style>
+        <!-- Script pour gérer les modales -->
+<script>
+    function openLoginModal() {
+        document.getElementById("loginModal").style.display = "flex";
+        document.getElementById("registerModal").style.display = "none";
+    }
+
+    function closeLoginModal() {
+        document.getElementById("loginModal").style.display = "none";
+    }
+
+    function openRegisterModal() {
+        document.getElementById("registerModal").style.display = "flex";
+        document.getElementById("loginModal").style.display = "none";
+    }
+
+    function closeRegisterModal() {
+        document.getElementById("registerModal").style.display = "none";
+    }
+</script>

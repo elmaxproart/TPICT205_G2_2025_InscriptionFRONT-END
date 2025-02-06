@@ -1037,6 +1037,7 @@ C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\refint\gradeManager
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\gradeManager.pdb
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\ref\gradeManager.dll
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\3gyvytwgrc-b0etbt27uo.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\lsg9u3t1ea-e5ug391wqc.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\c15bjx9pys-q9pzclkmjy.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\gradeManager.sourcelink.json
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\3gyvytwgrc-p5lxs1h0ie.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\lsg9u3t1ea-ipukder5ep.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\c15bjx9pys-r39akkoo93.gz

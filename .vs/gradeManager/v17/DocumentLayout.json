@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\layout\\componentes\\navbar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:layout\\componentes\\navbar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\wwwroot\\manifest.webmanifest||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:wwwroot\\manifest.webmanifest||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -17,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -54,24 +58,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "manifest.webmanifest",
+              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\manifest.webmanifest",
+              "RelativeDocumentMoniker": "wwwroot\\manifest.webmanifest",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\manifest.webmanifest",
+              "RelativeToolTip": "wwwroot\\manifest.webmanifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-06T16:32:55.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "NavBar.razor",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\Componentes\\NavBar.razor",
               "RelativeDocumentMoniker": "Layout\\Componentes\\NavBar.razor",
               "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\Componentes\\NavBar.razor",
               "RelativeToolTip": "Layout\\Componentes\\NavBar.razor",
-              "ViewState": "AgIAADkAAACA/f///z8lwA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAACAMDMzMzMbwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-05T09:04:04.001Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\index.html",
               "RelativeDocumentMoniker": "wwwroot\\index.html",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "app.css",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\app.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\app.css",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "bootstrap.min.css",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\bootstrap\\bootstrap.min.css",
@@ -107,19 +124,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "Layout\\MainLayout.razor",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\MainLayout.razor",
-              "RelativeToolTip": "Layout\\MainLayout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAALAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\MainLayout.razor*",
+              "RelativeToolTip": "Layout\\MainLayout.razor*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-05T08:23:52.557Z"
+              "WhenOpened": "2025-02-05T08:23:52.557Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\_Imports.razor",
               "RelativeDocumentMoniker": "_Imports.razor",
@@ -131,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Pages\\Home.razor",
@@ -143,7 +161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\App.razor",
               "RelativeDocumentMoniker": "App.razor",
@@ -155,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "weather.json",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\sample-data\\weather.json",
               "RelativeDocumentMoniker": "wwwroot\\sample-data\\weather.json",
@@ -167,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "service-worker.js",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\service-worker.js",
               "RelativeDocumentMoniker": "wwwroot\\service-worker.js",
@@ -179,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "gradeManager.csproj",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\gradeManager.csproj",
               "RelativeDocumentMoniker": "gradeManager.csproj",

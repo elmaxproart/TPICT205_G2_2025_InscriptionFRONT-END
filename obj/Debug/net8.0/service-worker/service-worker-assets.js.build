@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "hEnilexu",
+  "version": "CId4jTx+",
   "assets": [
     {
       "hash": "sha256-oOTIrdhMppK2R4XM4tSMITvUszbtHTzjE2oy0WtvNvY=",
@@ -762,7 +762,7 @@ self.assetsManifest = {
       "url": "_framework/WindowsBase.wasm"
     },
     {
-      "hash": "sha256-ripOH/BZ8DVXnzfDPVVIKwgSqc35jJCiHr07hZrNcQo=",
+      "hash": "sha256-ac+efui4af/kAGaEAzzXO7vXCt3b5DEO0Fqhv5HaQQQ=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -798,11 +798,11 @@ self.assetsManifest = {
       "url": "_framework/emcc-props.json"
     },
     {
-      "hash": "sha256-orP5Dv/Mz1JvMjkHjo2fmzCU4LJZjjofdu5zYrvEj+Q=",
+      "hash": "sha256-ihJ/CiKLC8OIktXW1U0c0/FKXMfSzs/IQCDpqsbFELM=",
       "url": "_framework/gradeManager.pdb"
     },
     {
-      "hash": "sha256-1bR8EqM6ni3VvGpWhYaYDvzB4RpBToxnJVokiilPnAc=",
+      "hash": "sha256-o8alysgWPazXasZt5tHzGZ8kkEgMak2+s6pnEYzyyac=",
       "url": "_framework/gradeManager.wasm"
     },
     {

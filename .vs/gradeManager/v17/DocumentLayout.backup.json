@@ -35,14 +35,6 @@
       "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:wwwroot\\sample-data\\weather.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\wwwroot\\icon-512.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:wwwroot\\icon-512.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\wwwroot\\icon-192.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:wwwroot\\icon-192.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|c:\\users\\elmaxpro\\source\\repos\\grademanager\\wwwroot\\css\\bootstrap\\bootstrap.min.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{EE1C0FFD-C532-42CF-BF5F-4601279A6E9F}|gradeManager.csproj|solutionrelative:wwwroot\\css\\bootstrap\\bootstrap.min.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -62,44 +54,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.razor",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\App.razor",
-              "RelativeDocumentMoniker": "App.razor",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\App.razor",
-              "RelativeToolTip": "App.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-05T08:24:05.437Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Home.razor",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "Pages\\Home.razor",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Pages\\Home.razor",
-              "RelativeToolTip": "Pages\\Home.razor",
-              "ViewState": "AgIAAOYBAAAAAAAAAAAUwAMCAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-05T09:11:25.538Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_Imports.razor",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\_Imports.razor",
-              "RelativeDocumentMoniker": "_Imports.razor",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\_Imports.razor",
-              "RelativeToolTip": "_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-06T06:30:33.086Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -108,34 +64,10 @@
               "RelativeDocumentMoniker": "Layout\\Componentes\\NavBar.razor",
               "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\Componentes\\NavBar.razor",
               "RelativeToolTip": "Layout\\Componentes\\NavBar.razor",
-              "ViewState": "AgIAAAQAAADAMjMzMzMrwA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAACA/f///z8lwA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-05T09:04:04.001Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "bootstrap.min.css",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\bootstrap\\bootstrap.min.css",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
-              "RelativeToolTip": "wwwroot\\css\\bootstrap\\bootstrap.min.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-02-05T08:31:29.511Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "app.css",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\app.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\app.css",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\app.css",
-              "RelativeToolTip": "wwwroot\\css\\app.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-02-05T09:38:46.812Z"
             },
             {
               "$type": "Document",
@@ -151,6 +83,30 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\app.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\app.css",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\app.css",
+              "RelativeToolTip": "wwwroot\\css\\app.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-05T09:38:46.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "bootstrap.min.css",
+              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\bootstrap\\bootstrap.min.css",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+              "RelativeToolTip": "wwwroot\\css\\bootstrap\\bootstrap.min.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-05T08:31:29.511Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Layout\\MainLayout.razor",
@@ -163,27 +119,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "icon-192.png -  [Fran\u00E7ais (France)] - PNG [192x192, 8 bits, PNG]",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\icon-192.png",
-              "RelativeDocumentMoniker": "wwwroot\\icon-192.png",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\icon-192.png -  [Fran\u00E7ais (France)] - PNG [192x192, 8 bits, PNG]",
-              "RelativeToolTip": "wwwroot\\icon-192.png -  [Fran\u00E7ais (France)] - PNG [192x192, 8 bits, PNG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-02-05T22:40:39.994Z",
-              "EditorCaption": " -  [Fran\u00E7ais (France)] - PNG [192x192, 8 bits, PNG]"
+              "DocumentIndex": 5,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\_Imports.razor",
+              "RelativeDocumentMoniker": "_Imports.razor",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\_Imports.razor",
+              "RelativeToolTip": "_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-06T06:30:33.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "icon-512.png -  [Fran\u00E7ais (France)] - PNG [512x512, 4 bits, PNG]",
-              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\icon-512.png",
-              "RelativeDocumentMoniker": "wwwroot\\icon-512.png",
-              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\icon-512.png -  [Fran\u00E7ais (France)] - PNG [512x512, 4 bits, PNG]",
-              "RelativeToolTip": "wwwroot\\icon-512.png -  [Fran\u00E7ais (France)] - PNG [512x512, 4 bits, PNG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-02-05T22:40:42.046Z",
-              "EditorCaption": " -  [Fran\u00E7ais (France)] - PNG [512x512, 4 bits, PNG]"
+              "DocumentIndex": 1,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\Pages\\Home.razor",
+              "RelativeToolTip": "Pages\\Home.razor",
+              "ViewState": "AgIAAOYBAAAAAAAAAAAUwAMCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-05T09:11:25.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\App.razor",
+              "RelativeDocumentMoniker": "App.razor",
+              "ToolTip": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\App.razor",
+              "RelativeToolTip": "App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-05T08:24:05.437Z"
             },
             {
               "$type": "Document",
@@ -199,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 9,
               "Title": "service-worker.js",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\service-worker.js",
               "RelativeDocumentMoniker": "wwwroot\\service-worker.js",
@@ -211,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 10,
               "Title": "gradeManager.csproj",
               "DocumentMoniker": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\gradeManager.csproj",
               "RelativeDocumentMoniker": "gradeManager.csproj",

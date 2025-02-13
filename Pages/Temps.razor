@@ -1,0 +1,68 @@
+﻿@page "/temps"
+@inject NavigationManager Navigation
+
+<style>
+    body {
+        background: linear-gradient(to right, #4a90e2, #8e44ad);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-box {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .btn-custom {
+        background: #4a90e2;
+        border: none;
+        color: white;
+        transition: background 0.3s;
+    }
+
+        .btn-custom:hover {
+            background: #8e44ad;
+        }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="container-box">
+        <h3 class="text-primary">Validation du Matricule</h3>
+
+        @if (!string.IsNullOrEmpty(Matricule) && Matricule != "Aucun matricule fourni")
+        {
+            <p>Votre matricule <strong>@Matricule</strong> a été validé avec succès. Vous pouvez maintenant procéder à votre inscription.</p>
+            <button class="btn btn-custom mt-3" @onclick="NavigateToMatricule">Procéder à l'inscription</button>
+        }
+        else
+        {
+            <p class="text-danger">Aucun matricule fourni. Veuillez réessayer.</p>
+        }
+    </div>
+</div>
+
+@code {
+    private void NavigateToMatricule()
+    {
+        Navigation.NavigateTo($"/Inscription?matricule={Matricule}");
+    }
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Matricule { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(Matricule))
+        {
+            Matricule = "Aucun matricule fourni";
+        }
+    }
+}

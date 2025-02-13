@@ -1,0 +1,78 @@
+﻿@page "/Valide2FA"
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@inject gradeManager.Service.google.LocalStorageService LocalStorage
+
+@code {
+    private string email = string.Empty;
+    private string code = string.Empty;
+    private string message = string.Empty;
+    private bool isLoading = false;
+
+    // 🚀 Méthode asynchrone pour récupérer l'email depuis localStorage
+    protected override async Task OnInitializedAsync()
+    {
+        email = await LocalStorage.GetItem("userEmail") ?? "";
+    }
+
+    private async Task Verify2FAAsync()
+    {
+        if (string.IsNullOrWhiteSpace(code))
+        {
+            message = "Veuillez entrer le code.";
+            return;
+        }
+
+        isLoading = true;
+        message = string.Empty;
+
+        var request = new { email, code };
+        var response = await Http.PostAsJsonAsync("https://localhost:7066/api/TwoFactorManager/verify-2fa", request);
+
+        isLoading = false;
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LocalStorage.RemoveItem("userEmail"); // 🚀 Appel asynchrone
+            Navigation.NavigateTo("/dashboard"); // Redirection après succès
+        }
+        else
+        {
+            message = "Code invalide. Veuillez réessayer.";
+        }
+    }
+}
+
+<PageTitle>Validation 2FA</PageTitle>
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Validation de l'authentification à deux facteurs (2FA)</h2>
+            <p class="text-center">Veuillez entrer le code reçu par email.</p>
+
+            <!-- Email (Auto-rempli) -->
+            <div class="mb-3">
+                <label for="emailInput" class="form-label">Email</label>
+                <input type="email" id="emailInput" class="form-control" @bind="email" readonly />
+            </div>
+
+            <!-- Code de vérification -->
+            <div class="mb-3">
+                <label for="codeInput" class="form-label">Code de vérification</label>
+                <input type="text" id="codeInput" class="form-control" @bind="code" placeholder="Entrez le code reçu" required />
+            </div>
+
+            <!-- Bouton de validation -->
+            <button class="btn btn-success w-100" @onclick="Verify2FAAsync" disabled="@isLoading">
+                @(isLoading ? "Validation..." : "Valider")
+            </button>
+
+            <!-- Message d'erreur -->
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="alert alert-danger mt-3">@message</div>
+            }
+        </div>
+    </div>
+</div>

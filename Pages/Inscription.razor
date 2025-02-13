@@ -1,0 +1,543 @@
+﻿@page "/inscription"
+@using gradeManager.Layout.Componentes
+@inject gradeManager.Service.inscription.IUE UeService
+<div class="container-fluid page-container">
+ 
+    <div class="row">
+        <!-- Colonne de gauche : Étapes -->
+        <div class="col-md-6 bg-dark text-white p-5">
+            <h3>Prérequis de l'inscription</h3> <!-- Titre pour les prérequis -->
+            <ul>
+                <li><strong>Paiement des frais :</strong> Assurez-vous que tous les frais d'inscription sont payés avant de commencer.</li>
+                <li><strong>Préinscription :</strong> Vérifiez que vous êtes préinscrit dans le système.</li>
+                <li><strong>Classe :</strong> Vous devez être inscrit dans une classe pour accéder à l'inscription.</li>
+            </ul>
+
+            <h3>Étapes de l'inscription</h3>
+            <ul>
+                <li><strong>1. Entrez votre matricule :</strong> Saisissez votre matricule dans le champ prévu à cet effet pour vous identifier.</li>
+                <li><strong>2. Entrez vos informations personnelles :</strong> Complétez les champs requis avec votre nom, prénom, date de naissance, adresse e-mail, numéro de téléphone et sexe.</li>
+                <li><strong>3. Rafraîchir la liste des UEs :</strong> Cliquez sur le bouton pour mettre à jour la liste des unités d'enseignement disponibles.</li>
+                <li><strong>4. Sélectionnez les UEs disponibles :</strong> Choisissez les unités d'enseignement souhaitées à partir de la liste après mise à jour.</li>
+                <li><strong>5. Soumettez le formulaire :</strong> Revérifiez toutes vos informations et cliquez sur le bouton "Soumettre" pour finaliser votre inscription.</li>
+            </ul>
+
+            <!-- Image sous les étapes -->
+            <img src="/tr.png" alt="Illustration" class="card-img-bottom" />
+        </div>
+        <!-- Colonne de droite : Formulaire d'inscription -->
+        <div class="col-md-6 p-5">
+            <h3 class="text-center text-white">Formulaire d'Inscription</h3>
+
+            <form id="inscriptionForm">
+                <div id="part1" class="step">
+                    <input type="hidden" id="Matricule" name="Matricule" value="@Matricule" />
+                </div>
+
+
+                <!-- Partie 2 - Informations personnelles -->
+                <div id="part2" class="step" >
+                    <div class="form-group">
+                        <label for="Nom" class="text-light">Nom</label>
+                        <input type="text" id="Nom" class="form-control" placeholder="Entrez votre nom" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Prenom" class="text-light">Prénom</label>
+                        <input type="text" id="Prenom" class="form-control" placeholder="Entrez votre prénom" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DateNaissance" class="text-light">Date de naissance</label>
+                        <input type="date" id="DateNaissance" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Email" class="text-light">Email</label>
+                        <input type="email" id="Email" class="form-control" placeholder="Entrez votre email" required />
+                        <small class="form-text text-muted">Veuillez entrer une adresse email valide.</small>
+                        <div id="emailErrorMessage" class="text-danger" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Numero" class="text-light">Numéro</label>
+                        <input type="number" id="Numero" class="form-control" placeholder="Entrez votre numéro de téléphone" />
+                        <small class="form-text text-muted">Veuillez entrer un numéro de 8 chiffres (ex : 69890756).</small>
+                        <div id="numeroErrorMessage" class="text-danger" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Sexe" class="text-light">Sexe</label>
+                        <select id="Sexe" class="form-control" required>
+                            <option value="M">Masculin</option>
+                            <option value="F">Féminin</option>
+                        </select>
+                    </div>
+
+                    <Uee/>
+                    <button type="button" id="submitBtn" class="btn btn-light btn-block mt-4">S'inscrire</button>
+
+                   
+                    
+
+                </div>
+            </form>
+
+            <div id="successMessage" class="alert alert-success mt-3" style="display:none;">
+                L'étudiant a été inscrit avec succès !
+            </div>
+
+            <div id="errorMessage" class="alert alert-danger mt-3" style="display:none;">
+                Erreur lors de l'inscription.
+            </div>
+        </div>
+    </div>
+    <!-- Pop-up de confirmation -->
+    <div id="confirmationPopup" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Inscription réussie</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p id="confirmationMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>
+<footer class="bg-dark text-white mt-5 p-4 text-center">
+    <div class="container">
+        <p class="mb-0">© 2025 - Votre Institution, Tous droits réservés.</p>
+        <p>
+            <a href="../Pages/Home.razor" class="text-white">Accueil</a> •
+            <a href="../Pages/" class="text-white">Inscription</a> •
+            <a href="../Pages/StudDashbord.razor" class="text-white">Connexion</a>
+        </p>
+    </div>
+</footer>
+<!-- Importation de jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+      $(document).ready(function () {
+        var apiUrl = "https://localhost:7066/api/UE";
+
+        // Fonction pour charger les UEs sans recharger la page
+        function chargerUEs() {
+            $("#UeIds").empty(); // Vide la liste avant de la recharger
+            $("#loadingIndicator").show(); // Affiche le spinner de chargement
+
+            $.ajax({
+                url: apiUrl,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log("Données reçues :", data);
+
+                    if (data && data.length > 0) {
+                        $.each(data, function (index, ue) {
+                            $("#UeIds").append(
+                                `<option value="${ue.id}">${ue.libelle} (Coef: ${ue.coef})</option>`
+                            );
+                        });
+                    } else {
+                        $("#UeIds").append('<option disabled>Aucune UE disponible</option>');
+                    }
+
+                    $("#loadingIndicator").hide(); // Masque le spinner une fois les données chargées
+                },
+                error: function (xhr, status, error) {
+                    console.error("Erreur AJAX :", status, error);
+                    $("#UeIds").append('<option disabled>Erreur lors du chargement</option>');
+                    $("#loadingIndicator").hide(); // Masque le spinner en cas d'erreur
+                }
+            });
+        }
+
+        // Chargement initial des UEs
+        chargerUEs();
+
+        // Empêcher le rechargement de la page lors du clic sur le bouton
+        $("#refreshUeBtn").click(function (event) {
+            event.preventDefault(); // Empêche le rafraîchissement de la page
+            chargerUEs(); // Recharge uniquement les UEs
+        });
+
+        // Gestion du bouton "S'inscrire"  
+$("#submitBtn").click(function (event) {  
+    event.preventDefault(); // Empêche l'envoi du formulaire par défaut  
+
+    var selectedUEs = $("#UeIds").val(); // Récupérer les UEs sélectionnées  
+    var email = $("#Email").val();  
+    var numero = $("#Numero").val();  
+    
+    var ueErrorMessage = $("#ueErrorMessage");  
+    var emailErrorMessage = $("#emailErrorMessage");  
+    var numeroErrorMessage = $("#numeroErrorMessage");  
+
+    // Effacer les messages d'erreur précédents  
+    ueErrorMessage.text("").hide();  
+    emailErrorMessage.text("").hide();  
+    numeroErrorMessage.text("").hide();  
+
+    // Validation des UEs  
+    if (!selectedUEs || selectedUEs.length === 0) {  
+        ueErrorMessage.text("Veuillez sélectionner au moins une UE.").show();  
+    }  
+    
+    // Validation de l'email  
+    var emailPattern = /^[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$/;  
+    if (!emailPattern.test(email)) {  
+        emailErrorMessage.text("Veuillez entrer une adresse email valide.").show();  
+    }  
+
+    // Validation du numéro  
+    if (!/^\d{8}$/.test(numero)) {  
+        numeroErrorMessage.text("Veuiller entrer un numéro valide de 8 chiffres.").show();  
+    }  
+
+    // Si toutes les validations réussissent, continuez avec la soumission  
+    if (selectedUEs.length > 0 && emailPattern.test(email) && /^\d{8}$/.test(numero)) {  
+        console.log("Données envoyées : ", inscriptionData);  
+        // Autres actions ici pour soumettre le formulaire...  
+    }  
+});
+    });
+
+</script>
+
+<script>
+
+     $(document).ready(function () {
+         $("#submitBtn").click(function (event) {
+             event.preventDefault(); // Empêche le comportement par défaut du bouton (si c'est un bouton de soumission).
+
+             var inscriptionData = {
+                 matricule: $("#Matricule").val(),
+                 nom: $("#Nom").val(),
+                 prenom: $("#Prenom").val(),
+                 dateNaissance: $("#DateNaissance").val(),
+                 email: $("#Email").val(),
+                 numero: $("#Numero").val(),
+                 sexe: $("#Sexe").val(),
+                ueIds: [] // Assurez-vous que vous obtenez un tableau.
+             };
+
+             console.log("Inscription Data:", inscriptionData); // Debug: afficher les données envoyées
+
+             $.ajax({
+                 url: "https://localhost:7066/api/Inscription",
+                 type: "POST",
+                 contentType: "application/json",
+                 data: JSON.stringify(inscriptionData),
+                 success: function (response) {
+                     $("#confirmationMessage").text("L'étudiant " + inscriptionData.nom + " " + inscriptionData.prenom + " a été inscrit avec succès !");
+                     $("#confirmationPopup").modal("show");
+                     $("#errorMessage").hide();
+                     $("#successMessage").show(); // Affiche le message de succès
+                 },
+                 error: function (xhr) {
+                     console.error("Erreur AJAX:", xhr.responseText); // Debug: affiche l'erreur dans la console
+                     $("#errorMessage").show().text("Erreur : " + (xhr.responseJSON ? xhr.responseJSON.message : xhr.responseText));
+                     $("#successMessage").hide();
+                 }
+             });
+         });
+     });
+</script>
+
+<!-- Ajouter Bootstrap pour le style -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Ajouter CSS personnalisé pour le thème bleu sombre et violet dégradé -->
+<style>
+    body {
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: black;
+    }
+    /* Pied de page */
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.4);
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        background-color: #34495e;
+        border: 1px solid #2c3e50;
+        color: #fff;
+    }
+
+        .form-control:focus {
+            background-color: #5d6d7e;
+            border-color: #8e44ad;
+        }
+
+    .btn-light {
+        background-color: #8e44ad;
+        border-color: #8e44ad;
+    }
+
+        .btn-light:hover {
+            background-color: #9b59b6;
+            border-color: #9b59b6;
+        }
+
+    .alert-success {
+        background-color: #27ae60;
+        color: white;
+    }
+
+    .alert-danger {
+        background-color: #e74c3c;
+        color: white;
+    }
+</style>
+<style>
+
+
+    body {
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: black;
+    }
+
+
+    /* Conteneur de la page avec fond animé en dégradé */
+    .page-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #3a3f58);
+        animation: gradientAnimation 15s ease infinite;
+        width: 100%;
+    }
+
+    /* Animation du dégradé */
+    @@keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Section Héro */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary {
+        background-color: #6a0dad;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #7b1fa2;
+            transform: scale(1.05);
+        }
+
+    /* Section À propos */
+    .about-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+    /* Section Fonctionnalités */
+    .features-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+        }
+
+    /* Section Contact */
+    .contact-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+            .contact-form input::placeholder,
+            .contact-form textarea::placeholder {
+                color: #888;
+            }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+    .btn-secondary {
+        background-color: #3a3f58;
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #4a4f68;
+            transform: scale(1.05);
+        }
+
+    /* Pied de page */
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.4);
+        font-size: 0.9rem;
+    }
+
+    .floating-image {
+        position: absolute;
+        top: 100px;
+        right: 150px;
+        width: 500px;
+        height: auto;
+        animation: floatAnimation 4s ease-in-out infinite;
+    }
+
+
+    @@keyframes floatAnimation {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+</style>
+
+        @code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Matricule { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(Matricule))
+        {
+            Matricule = "Aucun matricule fourni";
+        }
+    }
+
+
+
+
+
+}

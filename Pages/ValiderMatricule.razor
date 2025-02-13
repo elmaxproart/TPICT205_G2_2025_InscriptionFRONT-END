@@ -1,0 +1,74 @@
+﻿@page "/matricule"
+@inject NavigationManager Navigation
+
+<!-- Inclure jQuery pour AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="container mt-5 text-center">
+    <h2 class="text-light">Vérification du Matricule</h2>
+    <div class="form-group">
+        <label for="Matricule" class="text-light">Matricule</label>
+        <input type="text" id="Matricule" class="form-control text-center" placeholder="Entrez votre matricule" />
+        <small class="form-text text-warning">Format: 23u2324 (2 chiffres, 1 lettre, 4 chiffres)</small>
+    </div>
+    <button class="btn btn-primary mt-3" onclick="verifierMatricule()">Valider</button>
+    <div id="message" class="mt-3"></div>
+</div>
+
+<script>
+    function verifierMatricule() {
+        let matricule = $("#Matricule").val().trim();
+        let regex = /^[0-9]{2}[a-zA-Z]{1}[0-9]{4}$/;  // Vérification du format attendu
+
+        if (!regex.test(matricule)) {
+            $("#message").html('<div class="alert alert-danger">Format incorrect. Ex: 23u2324</div>');
+            return;
+        }
+
+        $("#message").html('<div class="text-light">Vérification en cours...</div>');
+
+        $.ajax({
+            url: `https://localhost:7066/api/Etudiants/rechercher/${matricule}`,  // Correction URL
+            type: "GET",
+            success: function(response) {
+                if (response && response.matricule) {
+                    window.location.href = `/temps?matricule=${matricule}`;
+                } else {
+                    $("#message").html('<div class="alert alert-danger">Matricule invalide ou inexistant.</div>');
+                }
+            },
+            error: function(xhr) {
+                if (xhr.status === 404) {
+                    $("#message").html('<div class="alert alert-danger">Matricule non trouvé.</div>');
+                } else {
+                    $("#message").html('<div class="alert alert-danger">Erreur de connexion à l\'API.</div>');
+                }
+            }
+        });
+    }
+</script>
+
+<!-- Styles améliorés -->
+<style>
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #3a3f58);
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+    .form-control {
+        background-color: #34495e;
+        border: 1px solid #2c3e50;
+        color: #fff;
+    }
+
+    .btn-primary {
+        background-color: #8e44ad;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #9b59b6;
+        }
+</style>

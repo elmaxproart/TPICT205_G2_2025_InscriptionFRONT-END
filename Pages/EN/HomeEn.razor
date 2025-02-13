@@ -1,0 +1,828 @@
+﻿@page "/home-en"
+@using gradeManager.Layout.Componentes
+@using gradeManager.Service.google
+@inject NavigationManager Navigation
+@inject TranslationService TranslationService
+<div class="page-container">
+    <NavBar />
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content" data-aos="fade-right">
+            <h2>Welcome to the Registration Platform</h2>
+            <p>Please make sure you already have a student ID</p>
+            <button class="btn-primary" @onclick="NavigateToMatricule" data-aos="fade-up">Register</button>
+        </div>
+
+        <img src="/te.png" alt="Illustration" class="card-img" data-aos="zoom-in" />
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Login</h2>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button class="btn-primary">Login</button>
+            <p>Don't have an account? <a href="#" onclick="openRegisterModal()">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegisterModal()">&times;</span>
+
+            <h2>Register</h2>
+
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="text" id="nickName" placeholder="Nickname" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required
+                   pattern="^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$"
+                   title="Password must contain at least 8 characters, one uppercase letter, one number, and one special character.">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <span id="passwordError" style="color: red; display: none;">Passwords do not match.</span>
+
+            <button class="btn-submit">Register</button>
+
+            <p>Or</p>
+
+            <div class="social-login">
+                <button class="google-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google">
+                    Sign in with Google
+                </button>
+                <button class="github-btn">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+                    Sign in with GitHub
+                </button>
+            </div>
+
+            <p>Already have an account? <a href="#" onclick="openLoginModal()">Login</a></p>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section" data-aos="fade-up">
+        <h2>About Us</h2>
+        <p>
+            GradeManager is a modern and intuitive application designed to help universities efficiently manage grades and academic performance.
+            Our platform offers advanced tools for tracking student results, analyzing performance, and much more.
+        </p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <h2 data-aos="fade-up">Features</h2>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="flip-left">
+                <h3>Grade Management</h3>
+                <p>Enter, modify, and track grades in real-time.</p>
+            </div>
+            <div class="feature-card" data-aos="flip-right">
+                <h3>Advanced Analytics</h3>
+                <p>Graphs and reports to track performance progress.</p>
+            </div>
+            <div class="feature-card" data-aos="flip-up">
+                <h3>Intuitive Interface</h3>
+                <p>A modern and user-friendly experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p>Do you have questions or want to know more? Feel free to reach out to us!</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your name" />
+            <input type="email" placeholder="Your email" />
+            <textarea placeholder="Your message"></textarea>
+            <button type="submit" class="btn-secondary" data-aos="zoom-in">Send</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 GradeManager. All rights reserved.</p>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+          duration: 1000, /* Animation duration in ms */
+          once: true, /* Animation plays only once */
+        });
+    </script>
+
+</div>
+
+@code {
+    private void NavigateToLogin()
+    {
+        Navigation.NavigateTo("/login");
+    }
+}
+
+<style>
+
+
+    body {
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: black;
+    }
+
+
+    /* Conteneur de la page avec fond animé en dégradé */
+    .page-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #ff4e50, #3a3f58);
+        animation: gradientAnimation 15s ease infinite;
+        width: 100%;
+    }
+
+    /* Animation du dégradé */
+    @@keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        25% {
+            background-position: 50% 75%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        75% {
+            background-position: 50% 25%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Section Héro */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary {
+        background-color: #6a0dad;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #7b1fa2;
+            transform: scale(1.05);
+        }
+
+    /* Section À propos */
+    .about-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+    /* Section Fonctionnalités */
+    .features-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+        .features-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+        }
+
+    /* Section Contact */
+    .contact-section {
+        padding: 60px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+            .contact-form input::placeholder,
+            .contact-form textarea::placeholder {
+                color: #888;
+            }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+    .btn-secondary {
+        background-color: #3a3f58;
+        border: none;
+        padding: 12px;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #4a4f68;
+            transform: scale(1.05);
+        }
+
+    /* Pied de page */
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.4);
+        font-size: 0.9rem;
+    }
+
+    .floating-image {
+        position: absolute;
+        top: 250px;
+        right: 20px;
+        width: 500px;
+        height: auto;
+        animation: floatAnimation 4s ease-in-out infinite;
+    }
+
+
+    @@keyframes floatAnimation {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+</style>
+<script>
+     //effet de scroll
+    AOS.init({
+        duration: 1200, // Animation duration in milliseconds
+        once: true,     // Whether animation should happen only once
+    });
+</script>
+<!-- Styles des modales -->
+<style>
+    /* Style de la modal */
+    .modal {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #4b0082, #1e1e60); /* Violet à Bleu Nuit */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 350px;
+        position: relative;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        color: white;
+        transform: translateY(-20px);
+        opacity: 0;
+        animation: slideIn 0.5s forwards ease-in-out;
+    }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        /* Style des champs */
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+            .modal-content input::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+    /* Bouton S'inscrire */
+    .btn-submit {
+        background: #ff4081;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .btn-submit:hover {
+            background: #ff0055;
+        }
+
+    /* Bouton de fermeture */
+    .close {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+        .close:hover {
+            color: #ff4081;
+        }
+
+    /* Boutons de connexion Google et GitHub */
+    .social-login {
+        margin-top: 10px;
+    }
+
+        .social-login button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+            margin-bottom: 8px;
+        }
+
+    .google-btn {
+        background: white;
+        color: black;
+    }
+
+    .github-btn {
+        background: #333;
+        color: white;
+    }
+
+        .google-btn img, .github-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+    .google-btn:hover {
+        background: #ddd;
+    }
+
+    .github-btn:hover {
+        background: #555;
+    }
+
+    @@keyframes glowing {
+        0% {
+            filter: drop-shadow(0px 0px 5px rgba(0, 162, 255, 0.8));
+        }
+
+        50% {
+            filter: drop-shadow(0px 0px 15px rgba(0, 162, 255, 1));
+        }
+
+        100% {
+            filter: drop-shadow(0px 0px 5px rgba(0, 162, 255, 0.8));
+        }
+    }
+
+    .hero-section .card-img {
+        width: 50%; /* Réduit la taille */
+        display: block;
+        margin: 20px auto; /* Centre l'image */
+        animation: glowing 1.5s infinite alternate ease-in-out;
+    }
+
+
+    /* Animation d'apparition */
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @@keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+<!-- Script pour gérer les modales -->
+<script>
+    function openLoginModal() {
+        document.getElementById("loginModal").style.display = "flex";
+        document.getElementById("registerModal").style.display = "none";
+    }
+
+    function closeLoginModal() {
+        document.getElementById("loginModal").style.display = "none";
+    }
+
+    function openRegisterModal() {
+        document.getElementById("registerModal").style.display = "flex";
+        document.getElementById("loginModal").style.display = "none";
+    }
+
+    function closeRegisterModal() {
+        document.getElementById("registerModal").style.display = "none";
+    }
+</script>
+@code {
+    private void NavigateToMatricule()
+    {
+        Navigation.NavigateTo("/matricule");
+    }
+}
+<script>
+    // Fonction de connexion de l'utilisateur
+    async function loginUser() {
+        const email = document.querySelector("#loginModal input[type='email']").value;
+        const password = document.querySelector("#loginModal input[type='password']").value;
+
+        const response = await fetch("https://localhost:7066/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (!response.ok) {
+            alert("Échec de connexion. Vérifiez vos identifiants.");
+            return;
+        }
+
+        const data = await response.json();
+        localStorage.setItem("token", data.token); // Stocker le token
+
+        // Récupérer le rôle de l'utilisateur
+        const userRole = await getUserRole(data.token);
+
+        // Redirection en fonction du rôle
+        if (userRole === "Admin") {
+            window.location.href = "/admin-dashboad";
+        } else {
+            window.location.href = "/student-dashboard";
+        }
+    }
+
+    // Fonction pour obtenir le rôle de l'utilisateur à partir du token
+    async function getUserRole(token) {
+        const response = await fetch("https://localhost:7066/api/auth/userRole", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Impossible de récupérer le rôle.");
+            return "User";
+        }
+
+        const data = await response.json();
+        return data.role;
+    }
+
+    // Vérifier si l'utilisateur est déjà connecté en vérifiant le token
+    function checkUserAuthentication() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            // Rediriger l'utilisateur vers la page d'accueil s'il n'est pas connecté
+            window.location.href = "/Home.razor"; // Remplacez par votre page de connexion si nécessaire
+        }
+    }
+
+    // Vérification de la connexion à chaque chargement de la page
+    window.onload = checkUserAuthentication;
+
+    // Ajouter l'événement au bouton de connexion
+    document.querySelector("#loginModal button").addEventListener("click", loginUser);
+</script>
+<script>
+        async function registerUser() {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const nickName = document.getElementById("nickName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const passwordError = document.getElementById("passwordError");
+
+        // Vérification des mots de passe
+        if (password !== confirmPassword) {
+            passwordError.style.display = "block";
+            return;
+        } else {
+            passwordError.style.display = "none";
+        }
+
+        // Objet utilisateur à envoyer à l'API
+        const userData = {
+            firstName,
+            lastName,
+            nickName,
+            email,
+            password
+        };
+
+        try {
+            const response = await fetch("https://localhost:7066/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("Échec de l'inscription : " + (errorData.message || "Erreur inconnue"));
+                return;
+            }
+
+            alert("Inscription réussie ! Connectez-vous.");
+            closeRegisterModal();
+            openLoginModal();
+        } catch (error) {
+            console.error("Erreur lors de l'inscription :", error);
+            alert("Une erreur est survenue. Vérifiez votre connexion.");
+        }
+    }
+
+    // Ajout d'un écouteur d'événement pour le bouton d'inscription
+    document.querySelector('.btn-submit').addEventListener('click', function (event) {
+        event.preventDefault(); // Empêcher la soumission du formulaire par défaut
+        registerUser();
+    });
+
+    // Fonction pour fermer la modal d'inscription
+    function closeRegisterModal() {
+        document.getElementById("registerModal").style.display = "none";
+    }
+
+    // Fonction pour ouvrir la modal de connexion
+    function openLoginModal() {
+        document.getElementById("registerModal").style.display = "none";
+        document.getElementById("loginModal").style.display = "block"; // Assurez-vous que `loginModal` existe dans votre HTML
+    }
+
+</script>
+
+<script>
+    const translations = {
+        "fr": {
+            "hero_section": {
+                "title": "Bienvenue dans La plateforme d'inscription",
+                "description": "Veuillez vous rassurer d'avoir déjà un matricule",
+                "register_button": "S'inscrire"
+            },
+            "login_modal": {
+                "title": "Connexion",
+                "email_placeholder": "Email",
+                "password_placeholder": "Mot de passe",
+                "login_button": "Se connecter",
+                "no_account": "Pas encore de compte ?",
+                "register_link": "S'inscrire"
+            },
+            "register_modal": {
+                "title": "Inscription",
+                "full_name_placeholder": "Nom complet",
+                "email_placeholder": "Email",
+                "password_placeholder": "Mot de passe",
+                "confirm_password_placeholder": "Confirmer le mot de passe",
+                "password_requirements": "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.",
+                "password_error": "Les mots de passe ne correspondent pas.",
+                "register_button": "S'enregistrer",
+                "or_text": "Ou",
+                "social_login": {
+                    "google": "Connexion avec Google",
+                    "github": "Connexion avec GitHub"
+                },
+                "already_have_account": "Déjà un compte ?",
+                "login_link": "Se connecter"
+            },
+            "about_section": {
+                "title": "À propos de nous",
+                "description": "GradeManager est une application moderne et intuitive conçue pour aider les universités à gérer efficacement les notes et les performances académiques."
+            },
+            "features_section": {
+                "title": "Fonctionnalités",
+                "features": {
+                    "grades_management": {
+                        "title": "Gestion des notes",
+                        "description": "Saisie, modification et suivi des notes en temps réel."
+                    },
+                    "advanced_analysis": {
+                        "title": "Analyses avancées",
+                        "description": "Graphiques et rapports pour suivre l'évolution des performances."
+                    },
+                    "intuitive_interface": {
+                        "title": "Interface intuitive",
+                        "description": "Une expérience utilisateur moderne et conviviale."
+                    }
+                }
+            },
+            "contact_section": {
+                "title": "Contactez-nous",
+                "description": "Vous avez des questions ou souhaitez en savoir plus ? N'hésitez pas à nous contacter !",
+                "form": {
+                    "name_placeholder": "Votre nom",
+                    "email_placeholder": "Votre email",
+                    "message_placeholder": "Votre message",
+                    "send_button": "Envoyer"
+                }
+            },
+            "footer": {
+                "text": "© 2025 GradeManager. Tous droits réservés."
+            }
+        },
+        // Ajoutez ici les traductions pour l'anglais (en) et l'espagnol (es)
+    };
+
+    function changeLanguage(lang) {
+        const translation = translations[lang];
+
+        // Mise à jour des sections
+        document.getElementById('heroTitle').textContent = translation.hero_section.title;
+        document.getElementById('heroDescription').textContent = translation.hero_section.description;
+        document.getElementById('registerButton').textContent = translation.hero_section.register_button;
+
+        // Modal Connexion
+        document.getElementById('loginTitle').textContent = translation.login_modal.title;
+        document.getElementById('loginEmail').placeholder = translation.login_modal.email_placeholder;
+        document.getElementById('loginPassword').placeholder = translation.login_modal.password_placeholder;
+        document.getElementById('loginButton').textContent = translation.login_modal.login_button;
+        document.getElementById('noAccount').textContent = translation.login_modal.no_account;
+        document.getElementById('registerLink').textContent = translation.login_modal.register_link;
+
+        // Modal Inscription
+        document.getElementById('registerTitle').textContent = translation.register_modal.title;
+        document.getElementById('fullName').placeholder = translation.register_modal.full_name_placeholder;
+        document.getElementById('registerEmail').placeholder = translation.register_modal.email_placeholder;
+        document.getElementById('password').placeholder = translation.register_modal.password_placeholder;
+        document.getElementById('confirmPassword').placeholder = translation.register_modal.confirm_password_placeholder;
+        document.getElementById('passwordError').textContent = translation.register_modal.password_error;
+        document.getElementById('registerButton').textContent = translation.register_modal.register_button;
+        document.getElementById('orText').textContent = translation.register_modal.or_text;
+        document.getElementById('googleButton').textContent = translation.register_modal.social_login.google;
+        document.getElementById('githubButton').textContent = translation.register_modal.social_login.github;
+        document.getElementById('alreadyHaveAccount').textContent = translation.register_modal.already_have_account;
+        document.getElementById('loginLink').textContent = translation.register_modal.login_link;
+
+        // Section À propos
+        document.getElementById('aboutTitle').textContent = translation.about_section.title;
+        document.getElementById('aboutDescription').textContent = translation.about_section.description;
+
+        // Section Fonctionnalités
+        document.getElementById('featuresTitle').textContent = translation.features_section.title;
+        document.getElementById('gradesManagementTitle').textContent = translation.features_section.features.grades_management.title;
+        document.getElementById('gradesManagementDescription').textContent = translation.features_section.features.grades_management.description;
+        document.getElementById('advancedAnalysisTitle').textContent = translation.features_section.features.advanced_analysis.title;
+        document.getElementById('advancedAnalysisDescription').textContent = translation.features_section.features.advanced_analysis.description;
+        document.getElementById('intuitiveInterfaceTitle').textContent = translation.features_section.features.intuitive_interface.title;
+        document.getElementById('intuitiveInterfaceDescription').textContent = translation.features_section.features.intuitive_interface.description;
+
+        // Section Contact
+        document.getElementById('contactTitle').textContent = translation.contact_section.title;
+        document.getElementById('contactDescription').textContent = translation.contact_section.description;
+        document.getElementById('contactName').placeholder = translation.contact_section.form.name_placeholder;
+        document.getElementById('contactEmail').placeholder = translation.contact_section.form.email_placeholder;
+        document.getElementById('contactMessage').placeholder = translation.contact_section.form.message_placeholder;
+        document.getElementById('sendButton').textContent = translation.contact_section.form.send_button;
+
+        // Footer
+        document.getElementById('footerText').textContent = translation.footer.text;
+    }
+
+    document.getElementById('languageSelector').addEventListener('change', function(event) {
+        const selectedLanguage = event.target.value;
+        changeLanguage(selectedLanguage);
+    });
+
+    // Initialisation avec la langue par défaut
+    changeLanguage('fr');
+</script>

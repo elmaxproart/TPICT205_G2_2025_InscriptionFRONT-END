@@ -1,0 +1,543 @@
+﻿@page "/student-dashboard"
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #ff4e50, #3a3f58);
+        color: white;
+    }
+
+    .container {
+        display: flex;
+        height: 100vh;
+        position: relative;
+    }
+
+    .sidebar {
+        width: 250px;
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #ff4e50); /* Dégradé de fond pour la sidebar */
+        position: fixed; /* Fixe la sidebar */
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transition: width 0.3s ease;
+        overflow: hidden;
+        padding-top: 60px; /* Ajustez cette valeur si nécessaire pour laisser de la place pour le profil de l'étudiant */
+    }
+
+        .sidebar.closed {
+            width: 80px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+            .sidebar ul li {
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                transition: background 0.3s, box-shadow 0.3s;
+                background: linear-gradient(135deg, #2f2f3b); 
+            
+            }
+
+                .sidebar ul li:hover, .sidebar ul li.active {
+                    background: linear-gradient(135deg, #1f1c2c, #6a0dad, #ff4e50);
+                }
+
+                .sidebar ul li i {
+                    font-size: 20px;
+                    margin-right: 15px;
+                }
+
+        .sidebar.closed ul li span {
+            display: none;
+        }
+
+    .topbar {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        justify-content: space-between;
+        position: fixed; /* Fixe la topbar */
+        top: 0;
+        left: 0;
+        z-index: 1; /* Assure que la topbar soit au-dessus du contenu */
+    }
+
+        .topbar .search {
+            flex: 1;
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        .topbar input {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            width: 60%;
+        }
+
+        .topbar .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+    .logo img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .logo span {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .topbar .search input:focus {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+
+    .topbar .search input::placeholder {
+        color: white;
+    }
+
+    .topbar .search input {
+        padding: 10px 40px 10px 20px; 
+        border-radius: 30px;
+        border: 1px solid #fff;
+        outline: none;
+        width: 60%;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    main {
+        flex: 1;
+        padding: 20px;
+        margin-top: 60px; /* Pour éviter que le contenu soit caché derrière la topbar */
+        margin-left: 250px; /* Décale le contenu à droite pour laisser de la place pour la sidebar */
+    }
+    /* Style du bouton hamburger */
+    .hamburger-btn {
+        background: transparent;
+        border: none;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+        .hamburger-btn:focus {
+            outline: none;
+        }
+</style>
+<!--dasboard-->
+<style>
+
+
+    /* Style des cartes pour occuper tout le conteneur */
+    .card {
+        border-radius: 12px; /* Bords arrondis */
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #ff4e50);
+        color: white;
+        height: 100%; /* Pour occuper tout le conteneur */
+    }
+
+        .card:hover {
+            transform: scale(1.05); /* Effet de survol */
+        }
+
+    /* Card body avec un padding agréable */
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Titres des cartes */
+    .card-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    /* Textes des cartes */
+    .card-text {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    /* Boutons */
+    .btn {
+        background-color: #ff4e50;
+        border-radius: 30px;
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+        .btn:hover {
+            background-color: #6a0dad;
+            transform: scale(1.05); /* Effet de survol */
+        }
+
+    /* Statistiques dans le widget */
+    .stat {
+        text-align: center;
+    }
+
+        .stat h6 {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .stat p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+    /* Structure de la grille de cartes */
+    .row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    /* Card individuelle sur chaque colonne */
+    .col-md-4, .col-md-6 {
+        flex: 1;
+        margin: 10px;
+        min-width: 280px; /* Assurez-vous que les cartes ne soient pas trop petites sur mobile */
+    }
+
+    /* Poussée du contenu dans le conteneur */
+    .container {
+        max-width: 1200px;
+        width: 100%;
+        margin: auto;
+    }
+
+</style>
+
+<div class="container">
+    <div class="sidebar" id="sidebar">
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="profile">
+            <img src="" alt=""> <!-- Remplacez par une vraie image -->
+            <h3 id="EtudiantNom"></h3>
+            <p id="etudiantFiliere"></p>
+        </div>
+        <ul>
+            <li onclick="changePage('dashboard')" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></li>
+            <li onclick="changePage('2FA')"><i class="fas fa-key"></i> <span>enable 2FA</span></li>
+            <li onclick="changePage('help')"><i class="fas fa-question-circle"></i> <span>Help</span></li>
+        </ul>
+
+       <button id="logoutbtn" class="btn btn-danger btn-group-lg bg-gradient">logout</button>
+    </div>
+
+    <div class="content">
+        <div class="topbar">
+            <div class="logo" onclick="changeContent()">
+                <img src="/icon-192.png" alt="Logo"> <!-- Remplacez par votre logo -->
+                <span>GradeManager</span>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i> <!-- Icône de recherche -->
+            </div>
+            <div class="icons">
+                <i class="fas fa-cog"></i>
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+        <main id="mainContent">
+            <img src="/favicon.png" alt="Profile Picture"> <!-- Remplacez par une vraie image -->
+        </main>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            window.location.href = "/login";
+        }
+    });
+
+    function changePage(page) {
+        const mainContent = document.getElementById("mainContent");
+        let content = '';
+
+        // Ajout de contenu spécifique selon la page
+        switch (page) {
+            case 'dashboard':
+    case 'dashboard':
+    content = `
+        <div class="dashboard-container">
+            
+
+            <!-- Row de cartes de statistiques -->
+            <div class="row">
+                <!-- Card 1 : Vue d'ensemble des notes -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Notes</h5>
+                            <p class="card-text">Consultez vos dernières notes et performances.</p>
+                            <a href="#" class="btn btn-light">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 : Emploi du temps -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Emploi du Temps</h5>
+                            <p class="card-text">Votre emploi du temps de cette semaine.</p>
+                            <a href="#" class="btn btn-light">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 : Professeurs -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Professeurs</h5>
+                            <p class="card-text">Découvrez vos professeurs et leurs informations de contact.</p>
+                            <a href="#" class="btn btn-light">Voir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row de cartes supplémentaires -->
+            <div class="row">
+                <!-- Card 4 : Activités récentes -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Activités récentes</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item">A rendu le devoir de mathématiques.</li>
+                                <li class="list-group-item">A assisté à la conférence sur la physique.</li>
+                                <li class="list-group-item">A téléchargé les documents de cours.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 : Notifications -->
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Notifications</h5>
+                            <div class="alert alert-warning" role="alert">
+                                Vous avez une nouvelle notification concernant l'UE Informatique.
+                            </div>
+                            <a href="#" class="btn btn-primary">Voir toutes les notifications</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    break;
+
+                break;
+           case '2FA':
+    content = `
+        <div class="container mt-5">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Gérer l'authentification à deux facteurs (2FA)</h2>
+                    <p class="card-text text-center mb-4">Protégez votre compte avec l'authentification à deux facteurs (2FA). Vous pouvez activer ou désactiver cette fonctionnalité ici.</p>
+
+                    <!-- Formulaire email -->
+                    <div class="mb-4">
+                        <label for="emailInput" class="form-label">Email</label>
+                        <input type="email" id="emailInput" class="form-control" placeholder="Entrez votre email" />
+                    </div>
+
+                    <!-- Boutons activer et désactiver 2FA -->
+                    <div class="d-flex justify-content-between">
+                        <button id="enable2FABtn" class="btn btn-primary w-48">Activer 2FA</button>
+                        <button id="disable2FABtn" class="btn btn-danger w-48">Désactiver 2FA</button>
+                    </div>
+
+                    <!-- Champ pour entrer le code de vérification 2FA -->
+                    <div id="verify2FACode" style="display: none;" class="mt-4">
+                        <div class="mb-3">
+                            <label for="codeInput" class="form-label">Code de vérification 2FA</label>
+                            <input type="text" id="codeInput" class="form-control" placeholder="Entrez le code reçu" />
+                        </div>
+                        <button id="verify2FABtn" class="btn btn-success w-100">Vérifier 2FA</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    break;
+
+           case 'help':
+    content = `
+        <div class="container mt-5">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Aide</h2>
+                    <p class="card-text text-center mb-4">Si vous avez besoin d'assistance, contactez notre support en utilisant les options ci-dessous.</p>
+
+                    <!-- Section Informations de support -->
+                    <div class="mb-4">
+                        <h5>Support</h5>
+                        <p>Vous pouvez nous contacter directement via email ou en utilisant le formulaire de contact ci-dessous.</p>
+                    </div>
+
+                    <!-- Formulaire de contact -->
+                    <form id="supportForm">
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Nom</label>
+                            <input type="text" id="nameInput" class="form-control" placeholder="Entrez votre nom" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Email</label>
+                            <input type="email" id="emailInput" class="form-control" placeholder="Entrez votre email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="messageInput" class="form-label">Message</label>
+                            <textarea id="messageInput" class="form-control" rows="4" placeholder="Décrivez votre problème ou question" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Envoyer votre demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    `;
+    break;
+
+            default:
+                content = `<h2>Page non trouvée</h2>`;
+        }
+
+        // Mise à jour du contenu de la page
+        mainContent.innerHTML = content;
+
+        // Mise à jour de l'état actif du menu
+        document.querySelectorAll(".sidebar ul li").forEach(li => li.classList.remove("active"));
+        event.currentTarget.classList.add("active");
+    }
+
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("closed");
+    }
+     function changeContent() {
+            const mainContent = document.getElementById("mainContent");
+            mainContent.innerHTML = `<img src="/favicon.png" alt="Profile Picture">`; // Remplacer par l'image souhaitée
+        }
+
+        document.getElementById("logoutbtn").addEventListener("click", function() {
+        // Supprimer le token du localStorage
+        localStorage.removeItem("token");
+
+        // Rediriger l'utilisateur vers la page de connexion
+        window.location.href = "";
+    });
+</script>
+<script>
+    async function enable2FA() {
+        const email = document.querySelector("#emailInput").value;
+
+        const response = await fetch("https://localhost:7066/api/TwoFactorManager/enable-2fa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        });
+
+        if (response.ok) {
+            alert("2FA activé. Un code a été envoyé à votre email.");
+
+            // Déconnexion de l'utilisateur
+            localStorage.removeItem("token"); // Suppression du token d'authentification
+            sessionStorage.clear(); // Nettoyage de la session si nécessaire
+
+            // Stocker l'email pour la prochaine page
+            localStorage.setItem("userEmail", email);
+
+            // Redirection vers la page de validation
+            window.location.href = "/Valide2FA";
+        } else {
+            alert("Erreur lors de l'activation de la 2FA.");
+        }
+    }
+
+
+    async function disable2FA() {
+        const email = document.querySelector("#emailInput").value;
+
+        const response = await fetch("https://localhost:7066/api/TwoFactorManager/disable-2fa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        });
+
+        if (response.ok) {
+            alert("2FA désactivé.");
+            document.querySelector("#verify2FACode").style.display = "none"; // Masquer le champ de code 2FA
+        } else {
+            alert("Erreur lors de la désactivation de la 2FA.");
+        }
+    }
+
+    async function verify2FA() {
+        const email = document.querySelector("#emailInput").value;
+        const code = document.querySelector("#codeInput").value;
+
+        const response = await fetch("https://localhost:7066/api/TwoFactorManager/verify-2fa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, code })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem("token", data.token); // Sauvegarder le token
+            alert("2FA vérifié avec succès. redirection...");
+            window.location.href = "";
+        } else {
+            alert("Code 2FA invalide ou expiré.");
+        }
+    }
+
+    document.querySelector("#enable2FABtn").addEventListener("click", enable2FA);
+    document.querySelector("#disable2FABtn").addEventListener("click", disable2FA);
+    document.querySelector("#verify2FABtn").addEventListener("click", verify2FA);
+</script>
+

@@ -1,0 +1,200 @@
+{
+  "fr": {
+    "hero_section": {
+      "title": "Bienvenue dans La plateforme d'inscription",
+      "description": "Veuillez vous rassurer d'avoir déjà un matricule",
+      "register_button": "S'inscrire"
+    },
+    "login_modal": {
+      "title": "Connexion",
+      "email_placeholder": "Email",
+      "password_placeholder": "Mot de passe",
+      "login_button": "Se connecter",
+      "no_account": "Pas encore de compte ?",
+      "register_link": "S'inscrire"
+    },
+    "register_modal": {
+      "title": "Inscription",
+      "full_name_placeholder": "Nom complet",
+      "email_placeholder": "Email",
+      "password_placeholder": "Mot de passe",
+      "confirm_password_placeholder": "Confirmer le mot de passe",
+      "password_requirements": "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.",
+      "password_error": "Les mots de passe ne correspondent pas.",
+      "register_button": "S'enregistrer",
+      "or_text": "Ou",
+      "social_login": {
+        "google": "Connexion avec Google",
+        "github": "Connexion avec GitHub"
+      },
+      "already_have_account": "Déjà un compte ?",
+      "login_link": "Se connecter"
+    },
+    "about_section": {
+      "title": "À propos de nous",
+      "description": "GradeManager est une application moderne et intuitive conçue pour aider les universités à gérer efficacement les notes et les performances académiques."
+    },
+    "features_section": {
+      "title": "Fonctionnalités",
+      "features": {
+        "grades_management": {
+          "title": "Gestion des notes",
+          "description": "Saisie, modification et suivi des notes en temps réel."
+        },
+        "advanced_analysis": {
+          "title": "Analyses avancées",
+          "description": "Graphiques et rapports pour suivre l'évolution des performances."
+        },
+        "intuitive_interface": {
+          "title": "Interface intuitive",
+          "description": "Une expérience utilisateur moderne et conviviale."
+        }
+      }
+    },
+    "contact_section": {
+      "title": "Contactez-nous",
+      "description": "Vous avez des questions ou souhaitez en savoir plus ? N'hésitez pas à nous contacter !",
+      "form": {
+        "name_placeholder": "Votre nom",
+        "email_placeholder": "Votre email",
+        "message_placeholder": "Votre message",
+        "send_button": "Envoyer"
+      }
+    },
+    "footer": {
+      "text": "© 2025 GradeManager. Tous droits réservés."
+    }
+  },
+  "en": {
+    "hero_section": {
+      "title": "Welcome to the Registration Platform",
+      "description": "Please make sure you already have a registration number",
+      "register_button": "Sign Up"
+    },
+    "login_modal": {
+      "title": "Login",
+      "email_placeholder": "Email",
+      "password_placeholder": "Password",
+      "login_button": "Login",
+      "no_account": "Don't have an account yet?",
+      "register_link": "Sign Up"
+    },
+    "register_modal": {
+      "title": "Sign Up",
+      "full_name_placeholder": "Full Name",
+      "email_placeholder": "Email",
+      "password_placeholder": "Password",
+      "confirm_password_placeholder": "Confirm Password",
+      "password_requirements": "The password must contain at least 8 characters, an uppercase letter, a number, and a special character.",
+      "password_error": "Passwords do not match.",
+      "register_button": "Register",
+      "or_text": "Or",
+      "social_login": {
+        "google": "Sign in with Google",
+        "github": "Sign in with GitHub"
+      },
+      "already_have_account": "Already have an account?",
+      "login_link": "Login"
+    },
+    "about_section": {
+      "title": "About Us",
+      "description": "GradeManager is a modern and intuitive application designed to help universities efficiently manage grades and academic performance."
+    },
+    "features_section": {
+      "title": "Features",
+      "features": {
+        "grades_management": {
+          "title": "Grade Management",
+          "description": "Enter, modify, and track grades in real-time."
+        },
+        "advanced_analysis": {
+          "title": "Advanced Analytics",
+          "description": "Charts and reports to track performance progress."
+        },
+        "intuitive_interface": {
+          "title": "Intuitive Interface",
+          "description": "A modern and user-friendly experience."
+        }
+      }
+    },
+    "contact_section": {
+      "title": "Contact Us",
+      "description": "Have questions or want to learn more? Feel free to reach out!",
+      "form": {
+        "name_placeholder": "Your Name",
+        "email_placeholder": "Your Email",
+        "message_placeholder": "Your Message",
+        "send_button": "Send"
+      }
+    },
+    "footer": {
+      "text": "© 2025 GradeManager. All rights reserved."
+    }
+  },
+  "es": {
+    "hero_section": {
+      "title": "Bienvenido a la Plataforma de Registro",
+      "description": "Por favor, asegúrese de tener ya un número de matrícula",
+      "register_button": "Registrarse"
+    },
+    "login_modal": {
+      "title": "Iniciar sesión",
+      "email_placeholder": "Correo electrónico",
+      "password_placeholder": "Contraseña",
+      "login_button": "Iniciar sesión",
+      "no_account": "¿Aún no tienes una cuenta?",
+      "register_link": "Registrarse"
+    },
+    "register_modal": {
+      "title": "Registro",
+      "full_name_placeholder": "Nombre completo",
+      "email_placeholder": "Correo electrónico",
+      "password_placeholder": "Contraseña",
+      "confirm_password_placeholder": "Confirmar contraseña",
+      "password_requirements": "La contraseña debe contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.",
+      "password_error": "Las contraseñas no coinciden.",
+      "register_button": "Registrarse",
+      "or_text": "O",
+      "social_login": {
+        "google": "Iniciar sesión con Google",
+        "github": "Iniciar sesión con GitHub"
+      },
+      "already_have_account": "¿Ya tienes una cuenta?",
+      "login_link": "Iniciar sesión"
+    },
+    "about_section": {
+      "title": "Sobre Nosotros",
+      "description": "GradeManager es una aplicación moderna e intuitiva diseñada para ayudar a las universidades a gestionar eficientemente las calificaciones y el rendimiento académico."
+    },
+    "features_section": {
+      "title": "Características",
+      "features": {
+        "grades_management": {
+          "title": "Gestión de calificaciones",
+          "description": "Introducción, modificación y seguimiento de calificaciones en tiempo real."
+        },
+        "advanced_analysis": {
+          "title": "Análisis Avanzado",
+          "description": "Gráficos e informes para seguir la evolución del rendimiento."
+        },
+        "intuitive_interface": {
+          "title": "Interfaz Intuitiva",
+          "description": "Una experiencia moderna y fácil de usar."
+        }
+      }
+    },
+    "contact_section": {
+      "title": "Contáctenos",
+      "description": "¿Tienes preguntas o quieres saber más? ¡No dudes en contactarnos!",
+      "form": {
+        "name_placeholder": "Tu Nombre",
+        "email_placeholder": "Tu Correo Electrónico",
+        "message_placeholder": "Tu Mensaje",
+        "send_button": "Enviar"
+      }
+    },
+    "footer": {
+      "text": "© 2025 GradeManager. Todos los derechos reservados."
+    }
+  }
+}

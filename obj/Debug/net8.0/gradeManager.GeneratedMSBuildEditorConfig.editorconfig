@@ -32,8 +32,44 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XENvbXBvbmVudGVzXE5hdkJhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/AdminDashboad.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5EYXNoYm9hZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/EN/HomeEn.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRU5cSG9tZUVuLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/ES/HomeES.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRVNcSG9tZUVTLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Setting.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/StudDashbord.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZERhc2hib3JkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Temps.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVtcHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Uee.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVWVlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/ValiderMatricule.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmFsaWRlck1hdHJpY3VsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Verify2FA.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmVyaWZ5MkZBLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ELMAXPRO/source/repos/gradeManager/_Imports.razor]
@@ -43,3 +79,7 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/ELMAXPRO/source/repos/gradeManager/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-2l27p7kfdk
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Inscription.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5zY3JpcHRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rn5ctgaoni

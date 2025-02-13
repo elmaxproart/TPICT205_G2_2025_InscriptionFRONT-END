@@ -1,20 +1,23 @@
 ﻿@page "/"
 @using gradeManager.Layout.Componentes
+@using gradeManager.Service.google
 @inject NavigationManager Navigation
-
+@inject TranslationService TranslationService
 <div class="page-container">
     <NavBar />
 
-
     <!-- Section Héro -->
-    <section id="hero" class="hero-section ">
-        <div class="hero-content">
-            <h2>Bienvenue dans GradeManager</h2>
-            <p>La solution ultime pour la gestion des notes universitaires</p>
-            <button class="btn-primary" onclick="openLoginModal()">Commencer</button>
-            <img src="/3025792-etudiant-homme-avec-ordinateur-portable-online-education-concept-vectoriel (1).jpg" alt="Illustration" class="floating-image" />
+    <section id="hero" class="hero-section">
+        <div class="hero-content" data-aos="fade-right">
+            <h2>Bienvenue dans La platforme d'inscription</h2>
+            <p>Veuillez Vous rassurer d'avoire deja un matricule</p>
+            <button class="btn-primary" @onclick="NavigateToMatricule" data-aos="fade-up">S'inscrire'</button>
         </div>
+
+        <img src="/te.png" alt="Illustration" class="card-img" data-aos="zoom-in" />
     </section>
+
+
     <!-- Modale de Connexion -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -30,15 +33,21 @@
     <!-- Modal d'inscription -->
     <div id="registerModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="closeRegisterModal()">&times;</span>
+
             <h2>Inscription</h2>
 
-            <input type="text" placeholder="Nom complet">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Mot de passe">
-            <input type="password" placeholder="Confirmer le mot de passe">
+            <input type="text" id="firstName" placeholder="Prénom" required>
+            <input type="text" id="lastName" placeholder="Nom" required>
+            <input type="text" id="nickName" placeholder="Pseudo" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Mot de passe" required
+                   pattern="^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$"
+                   title="Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.">
+            <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+            <span id="passwordError" style="color: red; display: none;">Les mots de passe ne correspondent pas.</span>
 
-            <button class="btn-submit">S'inscrire</button>
+            <button class="btn-submit">S'enregistrer</button>
 
             <p>Ou</p>
 
@@ -52,16 +61,15 @@
                     Connexion avec GitHub
                 </button>
             </div>
-            <p>deja un  compte ? <a href="#" onclick="openLoginModal()">Se connecter</a></p>
+
+            <p>Déjà un compte ? <a href="#" onclick="openLoginModal()">Se connecter</a></p>
         </div>
     </div>
 
 
 
-
-
     <!-- Section À propos -->
-    <section id="about" class="about-section">
+    <section id="about" class="about-section" data-aos="fade-up">
         <h2>À propos de nous</h2>
         <p>
             GradeManager est une application moderne et intuitive conçue pour aider les universités à gérer efficacement les notes et les performances académiques.
@@ -71,34 +79,33 @@
 
     <!-- Section Fonctionnalités -->
     <section id="features" class="features-section">
-        <h2>Fonctionnalités</h2>
+        <h2 data-aos="fade-up">Fonctionnalités</h2>
         <div class="features-grid">
-            <div class="feature-card "data-oas>
+            <div class="feature-card" data-aos="flip-left">
                 <h3>Gestion des notes</h3>
                 <p>Saisie, modification et suivi des notes en temps réel.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" data-aos="flip-right">
                 <h3>Analyses avancées</h3>
                 <p>Graphiques et rapports pour suivre l'évolution des performances.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" data-aos="flip-up">
                 <h3>Interface intuitive</h3>
                 <p>Une expérience utilisateur moderne et conviviale.</p>
             </div>
         </div>
     </section>
 
+
     <!-- Section Contact -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section" data-aos="fade-up">
         <h2>Contactez-nous</h2>
-        <p>
-            Vous avez des questions ou souhaitez en savoir plus ? N'hésitez pas à nous contacter !
-        </p>
+        <p>Vous avez des questions ou souhaitez en savoir plus ? N'hésitez pas à nous contacter !</p>
         <form class="contact-form">
             <input type="text" placeholder="Votre nom" />
             <input type="email" placeholder="Votre email" />
             <textarea placeholder="Votre message"></textarea>
-            <button type="submit" class="btn-secondary">Envoyer</button>
+            <button type="submit" class="btn-secondary" data-aos="zoom-in">Envoyer</button>
         </form>
     </section>
 
@@ -106,6 +113,16 @@
     <footer class="footer">
         <p>&copy; 2025 GradeManager. Tous droits réservés.</p>
     </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+          duration: 1000, /* Durée de l'animation en ms */
+          once: true, /* Animation se joue une seule fois */
+        });
+    </script>
+
 </div>
 
 @code {
@@ -129,7 +146,7 @@
     .page-container {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #fff;
-        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #3a3f58);
+        background: linear-gradient(135deg, #1f1c2c, #6a0dad, #ff4e50, #3a3f58);
      
         animation: gradientAnimation 15s ease infinite;
        width: 100%;
@@ -137,20 +154,11 @@
 
     /* Animation du dégradé */
     @@keyframes gradientAnimation {
-        0%
-
-    {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-
+      0% { background-position: 0% 50%; }
+    25% { background-position: 50% 75%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 25%; }
+    100% { background-position: 0% 50%; }
     }
 
     /* Section Héro */
@@ -464,6 +472,31 @@
         background: #555;
     }
 
+    @@keyframes glowing {
+        0%
+
+    {
+        filter: drop-shadow(0px 0px 5px rgba(0, 162, 255, 0.8));
+    }
+
+    50% {
+        filter: drop-shadow(0px 0px 15px rgba(0, 162, 255, 1));
+    }
+
+    100% {
+        filter: drop-shadow(0px 0px 5px rgba(0, 162, 255, 0.8));
+    }
+
+    }
+
+    .hero-section .card-img {
+        width: 50%; /* Réduit la taille */
+        display: block;
+        margin: 20px auto; /* Centre l'image */
+        animation: glowing 1.5s infinite alternate ease-in-out;
+    }
+
+
     /* Animation d'apparition */
     @@keyframes fadeIn {
         from
@@ -512,4 +545,280 @@
     function closeRegisterModal() {
         document.getElementById("registerModal").style.display = "none";
     }
+</script>
+@code {
+    private void NavigateToMatricule()
+    {
+        Navigation.NavigateTo("/matricule");
+    }
+}
+<script>
+    // Fonction de connexion de l'utilisateur
+    async function loginUser() {
+        const email = document.querySelector("#loginModal input[type='email']").value;
+        const password = document.querySelector("#loginModal input[type='password']").value;
+
+        const response = await fetch("https://localhost:7066/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (!response.ok) {
+            alert("Échec de connexion. Vérifiez vos identifiants.");
+            return;
+        }
+
+        const data = await response.json();
+        localStorage.setItem("token", data.token); // Stocker le token
+
+        // Récupérer le rôle de l'utilisateur
+        const userRole = await getUserRole(data.token);
+
+        // Redirection en fonction du rôle
+        if (userRole === "Admin") {
+            window.location.href = "/admin-dashboad";
+        } else {
+            window.location.href = "/student-dashboard";
+        }
+    }
+
+    // Fonction pour obtenir le rôle de l'utilisateur à partir du token
+    async function getUserRole(token) {
+        const response = await fetch("https://localhost:7066/api/auth/userRole", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Impossible de récupérer le rôle.");
+            return "User";
+        }
+
+        const data = await response.json();
+        return data.role;
+    }
+
+    // Vérifier si l'utilisateur est déjà connecté en vérifiant le token
+    function checkUserAuthentication() {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            // Rediriger l'utilisateur vers la page d'accueil s'il n'est pas connecté
+            window.location.href = "/Home.razor"; // Remplacez par votre page de connexion si nécessaire
+        }
+    }
+
+    // Vérification de la connexion à chaque chargement de la page
+    window.onload = checkUserAuthentication;
+
+    // Ajouter l'événement au bouton de connexion
+    document.querySelector("#loginModal button").addEventListener("click", loginUser);
+</script>
+<script>
+        async function registerUser() {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const nickName = document.getElementById("nickName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const passwordError = document.getElementById("passwordError");
+
+        // Vérification des mots de passe
+        if (password !== confirmPassword) {
+            passwordError.style.display = "block";
+            return;
+        } else {
+            passwordError.style.display = "none";
+        }
+
+        // Objet utilisateur à envoyer à l'API
+        const userData = {
+            firstName,
+            lastName,
+            nickName,
+            email,
+            password
+        };
+
+        try {
+            const response = await fetch("https://localhost:7066/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("Échec de l'inscription : " + (errorData.message || "Erreur inconnue"));
+                return;
+            }
+
+            alert("Inscription réussie ! Connectez-vous.");
+            closeRegisterModal();
+            openLoginModal();
+        } catch (error) {
+            console.error("Erreur lors de l'inscription :", error);
+            alert("Une erreur est survenue. Vérifiez votre connexion.");
+        }
+    }
+
+    // Ajout d'un écouteur d'événement pour le bouton d'inscription
+    document.querySelector('.btn-submit').addEventListener('click', function (event) {
+        event.preventDefault(); // Empêcher la soumission du formulaire par défaut
+        registerUser();
+    });
+
+    // Fonction pour fermer la modal d'inscription
+    function closeRegisterModal() {
+        document.getElementById("registerModal").style.display = "none";
+    }
+
+    // Fonction pour ouvrir la modal de connexion
+    function openLoginModal() {
+        document.getElementById("registerModal").style.display = "none";
+        document.getElementById("loginModal").style.display = "block"; // Assurez-vous que `loginModal` existe dans votre HTML
+    }
+
+</script>
+
+<script>
+    const translations = {
+        "fr": {
+            "hero_section": {
+                "title": "Bienvenue dans La plateforme d'inscription",
+                "description": "Veuillez vous rassurer d'avoir déjà un matricule",
+                "register_button": "S'inscrire"
+            },
+            "login_modal": {
+                "title": "Connexion",
+                "email_placeholder": "Email",
+                "password_placeholder": "Mot de passe",
+                "login_button": "Se connecter",
+                "no_account": "Pas encore de compte ?",
+                "register_link": "S'inscrire"
+            },
+            "register_modal": {
+                "title": "Inscription",
+                "full_name_placeholder": "Nom complet",
+                "email_placeholder": "Email",
+                "password_placeholder": "Mot de passe",
+                "confirm_password_placeholder": "Confirmer le mot de passe",
+                "password_requirements": "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.",
+                "password_error": "Les mots de passe ne correspondent pas.",
+                "register_button": "S'enregistrer",
+                "or_text": "Ou",
+                "social_login": {
+                    "google": "Connexion avec Google",
+                    "github": "Connexion avec GitHub"
+                },
+                "already_have_account": "Déjà un compte ?",
+                "login_link": "Se connecter"
+            },
+            "about_section": {
+                "title": "À propos de nous",
+                "description": "GradeManager est une application moderne et intuitive conçue pour aider les universités à gérer efficacement les notes et les performances académiques."
+            },
+            "features_section": {
+                "title": "Fonctionnalités",
+                "features": {
+                    "grades_management": {
+                        "title": "Gestion des notes",
+                        "description": "Saisie, modification et suivi des notes en temps réel."
+                    },
+                    "advanced_analysis": {
+                        "title": "Analyses avancées",
+                        "description": "Graphiques et rapports pour suivre l'évolution des performances."
+                    },
+                    "intuitive_interface": {
+                        "title": "Interface intuitive",
+                        "description": "Une expérience utilisateur moderne et conviviale."
+                    }
+                }
+            },
+            "contact_section": {
+                "title": "Contactez-nous",
+                "description": "Vous avez des questions ou souhaitez en savoir plus ? N'hésitez pas à nous contacter !",
+                "form": {
+                    "name_placeholder": "Votre nom",
+                    "email_placeholder": "Votre email",
+                    "message_placeholder": "Votre message",
+                    "send_button": "Envoyer"
+                }
+            },
+            "footer": {
+                "text": "© 2025 GradeManager. Tous droits réservés."
+            }
+        },
+        // Ajoutez ici les traductions pour l'anglais (en) et l'espagnol (es)
+    };
+
+    function changeLanguage(lang) {
+        const translation = translations[lang];
+
+        // Mise à jour des sections
+        document.getElementById('heroTitle').textContent = translation.hero_section.title;
+        document.getElementById('heroDescription').textContent = translation.hero_section.description;
+        document.getElementById('registerButton').textContent = translation.hero_section.register_button;
+
+        // Modal Connexion
+        document.getElementById('loginTitle').textContent = translation.login_modal.title;
+        document.getElementById('loginEmail').placeholder = translation.login_modal.email_placeholder;
+        document.getElementById('loginPassword').placeholder = translation.login_modal.password_placeholder;
+        document.getElementById('loginButton').textContent = translation.login_modal.login_button;
+        document.getElementById('noAccount').textContent = translation.login_modal.no_account;
+        document.getElementById('registerLink').textContent = translation.login_modal.register_link;
+
+        // Modal Inscription
+        document.getElementById('registerTitle').textContent = translation.register_modal.title;
+        document.getElementById('fullName').placeholder = translation.register_modal.full_name_placeholder;
+        document.getElementById('registerEmail').placeholder = translation.register_modal.email_placeholder;
+        document.getElementById('password').placeholder = translation.register_modal.password_placeholder;
+        document.getElementById('confirmPassword').placeholder = translation.register_modal.confirm_password_placeholder;
+        document.getElementById('passwordError').textContent = translation.register_modal.password_error;
+        document.getElementById('registerButton').textContent = translation.register_modal.register_button;
+        document.getElementById('orText').textContent = translation.register_modal.or_text;
+        document.getElementById('googleButton').textContent = translation.register_modal.social_login.google;
+        document.getElementById('githubButton').textContent = translation.register_modal.social_login.github;
+        document.getElementById('alreadyHaveAccount').textContent = translation.register_modal.already_have_account;
+        document.getElementById('loginLink').textContent = translation.register_modal.login_link;
+
+        // Section À propos
+        document.getElementById('aboutTitle').textContent = translation.about_section.title;
+        document.getElementById('aboutDescription').textContent = translation.about_section.description;
+
+        // Section Fonctionnalités
+        document.getElementById('featuresTitle').textContent = translation.features_section.title;
+        document.getElementById('gradesManagementTitle').textContent = translation.features_section.features.grades_management.title;
+        document.getElementById('gradesManagementDescription').textContent = translation.features_section.features.grades_management.description;
+        document.getElementById('advancedAnalysisTitle').textContent = translation.features_section.features.advanced_analysis.title;
+        document.getElementById('advancedAnalysisDescription').textContent = translation.features_section.features.advanced_analysis.description;
+        document.getElementById('intuitiveInterfaceTitle').textContent = translation.features_section.features.intuitive_interface.title;
+        document.getElementById('intuitiveInterfaceDescription').textContent = translation.features_section.features.intuitive_interface.description;
+
+        // Section Contact
+        document.getElementById('contactTitle').textContent = translation.contact_section.title;
+        document.getElementById('contactDescription').textContent = translation.contact_section.description;
+        document.getElementById('contactName').placeholder = translation.contact_section.form.name_placeholder;
+        document.getElementById('contactEmail').placeholder = translation.contact_section.form.email_placeholder;
+        document.getElementById('contactMessage').placeholder = translation.contact_section.form.message_placeholder;
+        document.getElementById('sendButton').textContent = translation.contact_section.form.send_button;
+
+        // Footer
+        document.getElementById('footerText').textContent = translation.footer.text;
+    }
+
+    document.getElementById('languageSelector').addEventListener('change', function(event) {
+        const selectedLanguage = event.target.value;
+        changeLanguage(selectedLanguage);
+    });
+
+    // Initialisation avec la langue par défaut
+    changeLanguage('fr');
 </script>

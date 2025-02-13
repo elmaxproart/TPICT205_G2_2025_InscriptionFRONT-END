@@ -2156,4 +2156,7 @@ wwwroot\icon-192.png
 wwwroot\icon-512.png
 wwwroot\index.html
 wwwroot\manifest.webmanifest
+wwwroot\sample-data\lang.json
 wwwroot\sample-data\weather.json
+wwwroot\te.png
+wwwroot\tr.png

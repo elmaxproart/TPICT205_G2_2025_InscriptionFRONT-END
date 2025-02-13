@@ -12,18 +12,40 @@
         </li>
     </ul>
 
-     <div class="settings">
-        <button @onclick="ToggleTheme">
-            @(isDarkMode ? "☀️" : "🌙")
-        </button>
-        <select @bind="selectedLanguage">
-            <option value="fr">🇫🇷 FR</option>
+    <div class="settings">
+        <select id="languageSelector">
+            
+            
+            <option value="fr" selected>🇫🇷 FR</option> <!-- Option française par défaut -->
             <option value="en">🇬🇧 EN</option>
             <option value="es">🇪🇸 ES</option>
         </select>
     </div>
-</nav>
 
+    <script>
+
+        // Automatically select the French option on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSelector = document.getElementById('languageSelector');
+            languageSelector.value = 'fr'; // Définit le français comme langue par défaut
+        });
+
+        document.getElementById('languageSelector').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+
+            // Define the pages for each language
+            const languagePages = {
+                en: '/home-en', // English page
+                es: '/home-es', // Spanish page
+                fr: '/', // French page
+            };
+
+            // Redirect to the corresponding page
+            window.location.href = languagePages[selectedLanguage];
+        });
+    </script>
+
+</nav>
 
 <style>
    

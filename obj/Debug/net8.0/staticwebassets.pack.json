@@ -8641,8 +8641,20 @@
       "PackagePath": "staticwebassets\\manifest.webmanifest"
     },
     {
+      "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\sample-data\\lang.json",
+      "PackagePath": "staticwebassets\\sample-data\\lang.json"
+    },
+    {
       "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\sample-data\\weather.json",
       "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\te.png",
+      "PackagePath": "staticwebassets\\te.png"
+    },
+    {
+      "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\tr.png",
+      "PackagePath": "staticwebassets\\tr.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.gradeManager.props",

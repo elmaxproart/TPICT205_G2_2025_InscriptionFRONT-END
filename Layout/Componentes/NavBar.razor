@@ -7,49 +7,31 @@
         <li><a href="#about">À propos</a></li>
         <li><a href="#features">Fonctionnalités</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li>
-            <button class="btn-login" onclick="openLoginModal()">Se Connecter</button>
+        <!-- Show these links only if user is authenticated -->
+        <li id="homeLink" style="display:none;">
+            <a href="/home" id="homeBtn">Home</a>
+        </li>
+        <li id="studentLink" style="display:none;">
+            <a href="/student-dashboard" id="studentBtn">Student Dashboard</a>
+        </li>
+        <li id="loginLink">
+            <button class="btn-login" onclick="openLoginModal()">Connexion Admin</button>
+        </li>
+        <li id="logoutLink" style="display:none;">
+            <button class="btn-logout" onclick="logout()">Logout</button>
         </li>
     </ul>
 
     <div class="settings">
         <select id="languageSelector">
-            
-            
-            <option value="fr" selected>🇫🇷 FR</option> <!-- Option française par défaut -->
+            <option value="fr">🇫🇷 FR</option>
             <option value="en">🇬🇧 EN</option>
             <option value="es">🇪🇸 ES</option>
         </select>
     </div>
-
-    <script>
-
-        // Automatically select the French option on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const languageSelector = document.getElementById('languageSelector');
-            languageSelector.value = 'fr'; // Définit le français comme langue par défaut
-        });
-
-        document.getElementById('languageSelector').addEventListener('change', function() {
-            const selectedLanguage = this.value;
-
-            // Define the pages for each language
-            const languagePages = {
-                en: '/home-en', // English page
-                es: '/home-es', // Spanish page
-                fr: '/', // French page
-            };
-
-            // Redirect to the corresponding page
-            window.location.href = languagePages[selectedLanguage];
-        });
-    </script>
-
 </nav>
 
 <style>
-   
-
     .nav-bar {
         display: flex;
         justify-content: space-between;
@@ -91,7 +73,7 @@
                 color: #d1c4e9;
             }
 
-    .btn-login {
+    .btn-login, .btn-logout {
         background-color: #6a0dad;
         border: none;
         padding: 10px 20px;
@@ -101,7 +83,7 @@
         transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-        .btn-login:hover {
+        .btn-login:hover, .btn-logout:hover {
             background-color: #7b1fa2;
             transform: scale(1.05);
         }
@@ -137,37 +119,36 @@
         background-color: white;
         color: black;
     }
-
 </style>
-@code {
-    [Inject] NavigationManager Navigation { get; set; }
 
-    private bool isDarkMode = false;
-    private string selectedLanguage = "fr";
+<script>
+    // Check if user is authenticated when the page loads
+    function checkUserAuthentication() {
+        const token = localStorage.getItem("token");
+        const isAuthenticated = document.cookie.includes("isAuthenticated=true");
 
-    private Dictionary<string, Dictionary<string, string>> translations = new()
-    {
-        { "fr", new Dictionary<string, string> { {"home", "Accueil"}, {"about", "À propos"}, {"features", "Fonctionnalités"}, {"contact", "Contact"}, {"login", "Se Connecter"} } },
-        { "en", new Dictionary<string, string> { {"home", "Home"}, {"about", "About"}, {"features", "Features"}, {"contact", "Contact"}, {"login", "Login"} } },
-        { "es", new Dictionary<string, string> { {"home", "Inicio"}, {"about", "Acerca de"}, {"features", "Características"}, {"contact", "Contacto"}, {"login", "Iniciar sesión"} } }
-    };
-
-    private Dictionary<string, string> currentTexts = new();
-
-    protected override void OnInitialized()
-    {
-        ChangeLanguage();
+        if (token && isAuthenticated) {
+            // Show Home and Student Dashboard links, and Logout button
+            document.getElementById("homeLink").style.display = "block";
+            document.getElementById("studentLink").style.display = "block";
+            document.getElementById("logoutLink").style.display = "block";
+            document.getElementById("loginLink").style.display = "none";
+        } else {
+            // Show the login button
+            document.getElementById("homeLink").style.display = "none";
+            document.getElementById("studentLink").style.display = "none";
+            document.getElementById("logoutLink").style.display = "none";
+            document.getElementById("loginLink").style.display = "block";
+        }
     }
 
-    private void ToggleTheme()
-    {
-        isDarkMode = !isDarkMode;
-        var themeClass = isDarkMode ? "dark-mode" : "light-mode";
-       
+    // Logout function
+    function logout() {
+        localStorage.removeItem("token");
+        document.cookie = "isAuthenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        window.location.href = "/Home.razor"; // Redirect to Home page after logout
     }
 
-    private void ChangeLanguage()
-    {
-        currentTexts = translations[selectedLanguage];
-    }
-}
+    // Call checkUserAuthentication when the page is loaded
+    window.onload = checkUserAuthentication;
+</script>

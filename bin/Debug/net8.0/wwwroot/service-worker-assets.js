@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "Hv4buHyC",
+  "version": "IHCAxDT5",
   "assets": [
     {
       "hash": "sha256-oOTIrdhMppK2R4XM4tSMITvUszbtHTzjE2oy0WtvNvY=",
@@ -806,7 +806,7 @@ self.assetsManifest = {
       "url": "_framework/WindowsBase.wasm"
     },
     {
-      "hash": "sha256-fckswRdMydbHrLIAFLQ8XHpiJpPUfvBf6JKQai4tR1I=",
+      "hash": "sha256-0vzos6+4/eiOAd1Akm5a2vKhWNbpiC4QnjI4cUD2tUs=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -842,11 +842,11 @@ self.assetsManifest = {
       "url": "_framework/emcc-props.json"
     },
     {
-      "hash": "sha256-rrFi4xFxZMEoH7XypMdkDJ9DpsgeywcTd+Xi7o+Ldk8=",
+      "hash": "sha256-iryQ6m9m0KqN4mEZUDuUTKToFB97x5RmNpNhiKZh6d8=",
       "url": "_framework/gradeManager.pdb"
     },
     {
-      "hash": "sha256-KVVFsAhMFKePqfGo1d87ZmNDtxQVYYpeiJHVyHif1FA=",
+      "hash": "sha256-lo2K+NAFhQXlgLWAgeZJvI4xKtp1wAnN3FzEi8nid4k=",
       "url": "_framework/gradeManager.wasm"
     },
     {

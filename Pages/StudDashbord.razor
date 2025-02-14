@@ -539,5 +539,18 @@
     document.querySelector("#enable2FABtn").addEventListener("click", enable2FA);
     document.querySelector("#disable2FABtn").addEventListener("click", disable2FA);
     document.querySelector("#verify2FABtn").addEventListener("click", verify2FA);
+
+        // Vérification du cookie lors du chargement de la page
+    function checkUserAuthentication() {
+        const token = localStorage.getItem("token");
+        const isAuthenticated = document.cookie.includes("isAuthenticated=true");
+
+        if (!token || !isAuthenticated) {
+            // Rediriger vers la page de connexion
+            window.location.href = "";
+
+        }
+    }
+    checkUserAuthentication();
 </script>
 

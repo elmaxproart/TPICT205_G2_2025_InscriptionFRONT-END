@@ -1,78 +1,143 @@
-﻿@page "/Valide2FA"
-@inject NavigationManager Navigation
-@inject HttpClient Http
-@inject gradeManager.Service.google.LocalStorageService LocalStorage
+﻿@page "/verify-2fa"
+@inject IJSRuntime JS
 
-@code {
-    private string email = string.Empty;
-    private string code = string.Empty;
-    private string message = string.Empty;
-    private bool isLoading = false;
-
-    // 🚀 Méthode asynchrone pour récupérer l'email depuis localStorage
-    protected override async Task OnInitializedAsync()
-    {
-        email = await LocalStorage.GetItem("userEmail") ?? "";
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #4b6cb7, #182848);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
     }
 
-    private async Task Verify2FAAsync()
-    {
-        if (string.IsNullOrWhiteSpace(code))
-        {
-            message = "Veuillez entrer le code.";
+    .form-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+        width: 350px;
+    }
+
+    h3 {
+        color: #fff;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: #ddd;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        outline: none;
+        transition: 0.3s;
+    }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+    .verify-btn {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        border: none;
+        padding: 12px;
+        width: 100%;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .verify-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(106, 17, 203, 0.5);
+        }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="form-container">
+    <h3>🔐 Vérification 2FA</h3>
+    <p>Un code a été envoyé à votre email.</p>
+
+    <input id="emailInput"  placeholder="CONFIRMER VOTRE EMAIL"  />
+    <input id="codeInput" placeholder="XXXXXX" />
+
+    <button class="verify-btn" onclick="verify2FA()">Vérifier</button>
+</div>
+
+<script>
+    window.onload = function () {
+        // Récupérer l'email depuis localStorage
+        const email = localStorage.getItem("pendingEmail");
+
+        if (email) {
+            // Afficher l'email dans le champ de saisie (readonly pour ne pas permettre à l'utilisateur de modifier)
+            document.querySelector("#emailInput").value = email;
+        } else {
+            alert("Aucun email trouvé pour la vérification 2FA.");
+        }
+    };
+
+    async function verify2FA() {
+        const email = document.querySelector("#emailInput").value;
+        
+        const code = document.querySelector("#codeInput").value;
+
+        if (!code.trim()) {
+            alert("Veuillez entrer le code 2FA.");
             return;
         }
 
-        isLoading = true;
-        message = string.Empty;
+        const response = await fetch("https://localhost:7066/api/TwoFactorManager/verify-2fa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, code })
+        });
 
-        var request = new { email, code };
-        var response = await Http.PostAsJsonAsync("https://localhost:7066/api/TwoFactorManager/verify-2fa", request);
+        if (response.ok) {
+            const data = await response.json();
+            // Stockage du nouveau token JWT
+            localStorage.setItem("token", data.token);
 
-        isLoading = false;
-
-        if (response.IsSuccessStatusCode)
-        {
-            await LocalStorage.RemoveItem("userEmail"); // 🚀 Appel asynchrone
-            Navigation.NavigateTo("/dashboard"); // Redirection après succès
-        }
-        else
-        {
-            message = "Code invalide. Veuillez réessayer.";
+            // Rediriger l'utilisateur vers son tableau de bord
+            document.cookie = "isAuthenticated=true; path=/";
+            alert("✅ 2FA vérifié avec succès !");
+            window.location.href = data.role === "Admin" ? "/admin-dashboard" : "/student-dashboard";
+        } else {
+            alert("⚠️ Code 2FA invalide ou expiré !");
         }
     }
-}
-
-<PageTitle>Validation 2FA</PageTitle>
-
-<div class="container mt-5">
-    <div class="card shadow-lg">
-        <div class="card-body">
-            <h2 class="card-title text-center mb-4">Validation de l'authentification à deux facteurs (2FA)</h2>
-            <p class="text-center">Veuillez entrer le code reçu par email.</p>
-
-            <!-- Email (Auto-rempli) -->
-            <div class="mb-3">
-                <label for="emailInput" class="form-label">Email</label>
-                <input type="email" id="emailInput" class="form-control" @bind="email" readonly />
-            </div>
-
-            <!-- Code de vérification -->
-            <div class="mb-3">
-                <label for="codeInput" class="form-label">Code de vérification</label>
-                <input type="text" id="codeInput" class="form-control" @bind="code" placeholder="Entrez le code reçu" required />
-            </div>
-
-            <!-- Bouton de validation -->
-            <button class="btn btn-success w-100" @onclick="Verify2FAAsync" disabled="@isLoading">
-                @(isLoading ? "Validation..." : "Valider")
-            </button>
-
-            <!-- Message d'erreur -->
-            @if (!string.IsNullOrEmpty(message))
-            {
-                <div class="alert alert-danger mt-3">@message</div>
-            }
-        </div>
-    </div>
-</div>
+</script>

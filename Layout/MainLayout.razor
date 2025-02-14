@@ -1,6 +1,12 @@
-﻿@inherits LayoutComponentBase
+﻿@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+@inherits LayoutComponentBase
+
 <div class="page">
     <main>
-         @Body
+        @Body
     </main>
 </div>
+
+

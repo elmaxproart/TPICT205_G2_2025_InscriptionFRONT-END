@@ -1078,7 +1078,6 @@ C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\webcil\Microsoft.Ex
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\webcil\Microsoft.Extensions.Caching.Memory.wasm
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\webcil\Microsoft.Extensions.Identity.Core.wasm
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\webcil\Microsoft.Extensions.Identity.Stores.wasm
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\scopedcss\Pages\Inscription.razor.rz.scp.css
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\30bzf2sw2b-h3pge1qroe.gz
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\7u0n3twkrx-5s9osyximo.gz
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\b35q0c8buo-eo4hyoutv9.gz
@@ -1094,6 +1093,7 @@ C:\Users\ELMAXPRO\source\repos\gradeManager\bin\Debug\net8.0\wwwroot\_framework\
 C:\Users\ELMAXPRO\source\repos\gradeManager\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\webcil\Newtonsoft.Json.wasm
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\xumturbk8f-qkbufwhni2.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\3gyvytwgrc-b7dclm9k55.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\lsg9u3t1ea-ql6hanbrj2.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\c15bjx9pys-fxxz4nea13.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\scopedcss\Pages\Inscription.razor.rz.scp.css
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\3gyvytwgrc-m1bia843kq.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\lsg9u3t1ea-2prlobyucb.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\c15bjx9pys-q9dgked88i.gz

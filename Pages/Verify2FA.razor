@@ -1,6 +1,6 @@
 ﻿@page "/verify-2fa"
 @inject IJSRuntime JS
-
+@using gradeManager.Layout.Componentes
 <style>
     body {
         font-family: 'Poppins', sans-serif;
@@ -87,6 +87,7 @@
 </style>
 
 <div class="form-container">
+    <BreadCrumb/>
     <h3>🔐 Vérification 2FA</h3>
     <p>Un code a été envoyé à votre email.</p>
 

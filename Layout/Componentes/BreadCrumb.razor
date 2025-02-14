@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+        @foreach (var segment in PathSegments)
+        {
+            <li class="breadcrumb-item">
+                <a href="@segment.Url">@segment.Name</a>
+            </li>
+        }
+    </ol>
+</nav>
+
+@code {
+    private List<BreadcrumbItem> PathSegments = new List<BreadcrumbItem>();
+
+    // Injection de NavigationManager
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    // Utiliser OnInitializedAsync pour garantir que NavigationManager est prêt
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var uri = NavigationManager.Uri;
+        PathSegments = GetPathSegments(uri);
+    }
+
+    private List<BreadcrumbItem> GetPathSegments(string uri)
+    {
+        var segments = new List<BreadcrumbItem>();
+        var path = new Uri(uri).AbsolutePath.Trim('/').Split('/');
+        var url = "/";
+
+        foreach (var segment in path)
+        {
+            url += segment + "/";
+            segments.Add(new BreadcrumbItem { Name = segment, Url = url });
+        }
+
+        return segments;
+    }
+
+    public class BreadcrumbItem
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
+    }
+}

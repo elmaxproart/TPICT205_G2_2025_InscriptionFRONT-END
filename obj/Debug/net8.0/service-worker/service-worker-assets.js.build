@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "IHCAxDT5",
+  "version": "P/upcuu4",
   "assets": [
     {
       "hash": "sha256-oOTIrdhMppK2R4XM4tSMITvUszbtHTzjE2oy0WtvNvY=",
@@ -806,7 +806,7 @@ self.assetsManifest = {
       "url": "_framework/WindowsBase.wasm"
     },
     {
-      "hash": "sha256-0vzos6+4/eiOAd1Akm5a2vKhWNbpiC4QnjI4cUD2tUs=",
+      "hash": "sha256-epQBjJg7PulsArSdbThOr/AHIsp8Xp2468IsGSMHxnc=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -842,11 +842,11 @@ self.assetsManifest = {
       "url": "_framework/emcc-props.json"
     },
     {
-      "hash": "sha256-iryQ6m9m0KqN4mEZUDuUTKToFB97x5RmNpNhiKZh6d8=",
+      "hash": "sha256-Bftm6cHrJkHrQ0Bwoov8nRRtJxmr5E8J+GOFs9cLUOc=",
       "url": "_framework/gradeManager.pdb"
     },
     {
-      "hash": "sha256-lo2K+NAFhQXlgLWAgeZJvI4xKtp1wAnN3FzEi8nid4k=",
+      "hash": "sha256-qp/RPpasZhVW8mDPBC79u+LSxDiIqRs+KPd1CFYeTzc=",
       "url": "_framework/gradeManager.wasm"
     },
     {
@@ -880,6 +880,10 @@ self.assetsManifest = {
     {
       "hash": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=",
       "url": "css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "hash": "sha256-PVENMITaqLdys2N4uZtFFuVaAnJjs/NCiuOFRDJJUug=",
+      "url": "facscience.jpg"
     },
     {
       "hash": "sha256-zd6Lh936FucvTGtYYe3pfA+quGLW6z/JQaQLGh1vU3U=",
@@ -9482,6 +9486,10 @@ self.assetsManifest = {
       "url": "fontawesome/webfonts/fa-v4compatibility.woff2"
     },
     {
+      "hash": "sha256-kU4Dxhekd6mwmE0UqCu9JCIYpNxW8D87wJW1Vh5m+mo=",
+      "url": "fse.webp"
+    },
+    {
       "hash": "sha256-YgkCKCpfLaAwc3nnxIOXMYHKAL+zP+5FdHe6bjtzhos=",
       "url": "gradeManager.styles.css"
     },
@@ -9498,8 +9506,16 @@ self.assetsManifest = {
       "url": "index.html"
     },
     {
+      "hash": "sha256-fUikBIV4iwudmfeXlGomNLEA+Y2QFRQgx89B5Q4G9r0=",
+      "url": "lettre.jpg"
+    },
+    {
       "hash": "sha256-RiCN4tXCv1NmXzYgnbURRV2kEL9NJrkw9PVBFfzA7n4=",
       "url": "manifest.webmanifest"
+    },
+    {
+      "hash": "sha256-gJzwI1cak2DaqrUUxZ+qONeUbzcFH7nohSEFkSt5vkc=",
+      "url": "re.jpg"
     },
     {
       "hash": "sha256-uRNpcmUYtStA28XggEzxPQ5fMSBnB8ol8e2jwrRyAAM=",

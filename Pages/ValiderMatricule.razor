@@ -1,10 +1,11 @@
 ﻿@page "/matricule"
 @inject NavigationManager Navigation
-
+@using gradeManager.Layout.Componentes
 <!-- Inclure jQuery pour AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="container mt-5 text-center">
+    <BreadCrumb/>
     <h2 class="text-light">Vérification du Matricule</h2>
     <div class="form-group">
         <label for="Matricule" class="text-light">Matricule</label>

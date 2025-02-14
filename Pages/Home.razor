@@ -5,7 +5,7 @@
 @inject TranslationService TranslationService
 <div class="page-container">
     <NavBar />
-
+   
     <!-- Section Héro -->
     <section id="hero" class="hero-section">
         <div class="hero-content" data-aos="fade-right">
@@ -549,7 +549,7 @@
 @code {
     private void NavigateToMatricule()
     {
-        Navigation.NavigateTo("/matricule");
+        Navigation.NavigateTo("/faculty");
     }
 }
 <!----<script>
@@ -720,7 +720,7 @@
         if (userRole === "Admin") {
             window.location.href = "/admin-dashboard";
         } else {
-            window.location.href = "/student-dashboard";
+            window.location.href = "/dashboard";
         }
     }
 

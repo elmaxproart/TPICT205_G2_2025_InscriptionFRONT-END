@@ -1,4 +1,4 @@
-﻿@page "/student-dashboard"
+﻿@page "/dashboard"
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -233,8 +233,9 @@
     }
 
 </style>
-
+@using gradeManager.Layout.Componentes
 <div class="container">
+    <BreadCrumb/>
     <div class="sidebar" id="sidebar">
         <button class="hamburger-btn" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
@@ -292,146 +293,20 @@
             case 'dashboard':
     case 'dashboard':
     content = `
-        <div class="dashboard-container">
-            
-
-            <!-- Row de cartes de statistiques -->
-            <div class="row">
-                <!-- Card 1 : Vue d'ensemble des notes -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Notes</h5>
-                            <p class="card-text">Consultez vos dernières notes et performances.</p>
-                            <a href="#" class="btn btn-light">Voir</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 : Emploi du temps -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Emploi du Temps</h5>
-                            <p class="card-text">Votre emploi du temps de cette semaine.</p>
-                            <a href="#" class="btn btn-light">Voir</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 : Professeurs -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Professeurs</h5>
-                            <p class="card-text">Découvrez vos professeurs et leurs informations de contact.</p>
-                            <a href="#" class="btn btn-light">Voir</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Row de cartes supplémentaires -->
-            <div class="row">
-                <!-- Card 4 : Activités récentes -->
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Activités récentes</h5>
-                            <ul class="list-group">
-                                <li class="list-group-item">A rendu le devoir de mathématiques.</li>
-                                <li class="list-group-item">A assisté à la conférence sur la physique.</li>
-                                <li class="list-group-item">A téléchargé les documents de cours.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 : Notifications -->
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Notifications</h5>
-                            <div class="alert alert-warning" role="alert">
-                                Vous avez une nouvelle notification concernant l'UE Informatique.
-                            </div>
-                            <a href="#" class="btn btn-primary">Voir toutes les notifications</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       ici sera afficher le dasbord
     `;
     break;
 
                 break;
            case '2FA':
     content = `
-        <div class="container mt-5">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Gérer l'authentification à deux facteurs (2FA)</h2>
-                    <p class="card-text text-center mb-4">Protégez votre compte avec l'authentification à deux facteurs (2FA). Vous pouvez activer ou désactiver cette fonctionnalité ici.</p>
-
-                    <!-- Formulaire email -->
-                    <div class="mb-4">
-                        <label for="emailInput" class="form-label">Email</label>
-                        <input type="email" id="emailInput" class="form-control" placeholder="Entrez votre email" />
-                    </div>
-
-                    <!-- Boutons activer et désactiver 2FA -->
-                    <div class="d-flex justify-content-between">
-                        <button id="enable2FABtn" class="btn btn-primary w-48">Activer 2FA</button>
-                        <button id="disable2FABtn" class="btn btn-danger w-48">Désactiver 2FA</button>
-                    </div>
-
-                    <!-- Champ pour entrer le code de vérification 2FA -->
-                    <div id="verify2FACode" style="display: none;" class="mt-4">
-                        <div class="mb-3">
-                            <label for="codeInput" class="form-label">Code de vérification 2FA</label>
-                            <input type="text" id="codeInput" class="form-control" placeholder="Entrez le code reçu" />
-                        </div>
-                        <button id="verify2FABtn" class="btn btn-success w-100">Vérifier 2FA</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+         ici sera afficher le 2fa configuration
     `;
     break;
 
            case 'help':
     content = `
-        <div class="container mt-5">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Aide</h2>
-                    <p class="card-text text-center mb-4">Si vous avez besoin d'assistance, contactez notre support en utilisant les options ci-dessous.</p>
-
-                    <!-- Section Informations de support -->
-                    <div class="mb-4">
-                        <h5>Support</h5>
-                        <p>Vous pouvez nous contacter directement via email ou en utilisant le formulaire de contact ci-dessous.</p>
-                    </div>
-
-                    <!-- Formulaire de contact -->
-                    <form id="supportForm">
-                        <div class="mb-3">
-                            <label for="nameInput" class="form-label">Nom</label>
-                            <input type="text" id="nameInput" class="form-control" placeholder="Entrez votre nom" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailInput" class="form-label">Email</label>
-                            <input type="email" id="emailInput" class="form-control" placeholder="Entrez votre email" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="messageInput" class="form-label">Message</label>
-                            <textarea id="messageInput" class="form-control" rows="4" placeholder="Décrivez votre problème ou question" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Envoyer votre demande</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+         ici sera afficher l'aide et l'assitence de l'universite'
     `;
     break;
 

@@ -2,6 +2,7 @@ wwwroot\3025792-etudiant-homme-avec-ordinateur-portable-online-education-concept
 wwwroot\css\app.css
 wwwroot\css\bootstrap\bootstrap.min.css
 wwwroot\css\bootstrap\bootstrap.min.css.map
+wwwroot\facscience.jpg
 wwwroot\favicon.png
 wwwroot\fontawesome\css\all.css
 wwwroot\fontawesome\css\all.min.css
@@ -2152,10 +2153,13 @@ wwwroot\fontawesome\webfonts\fa-solid-900.ttf
 wwwroot\fontawesome\webfonts\fa-solid-900.woff2
 wwwroot\fontawesome\webfonts\fa-v4compatibility.ttf
 wwwroot\fontawesome\webfonts\fa-v4compatibility.woff2
+wwwroot\fse.webp
 wwwroot\icon-192.png
 wwwroot\icon-512.png
 wwwroot\index.html
+wwwroot\lettre.jpg
 wwwroot\manifest.webmanifest
+wwwroot\re.jpg
 wwwroot\sample-data\lang.json
 wwwroot\sample-data\weather.json
 wwwroot\te.png

@@ -28,6 +28,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Layout/Componentes/BreadCrumb.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XENvbXBvbmVudGVzXEJyZWFkQ3J1bWIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ELMAXPRO/source/repos/gradeManager/Layout/Componentes/NavBar.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XENvbXBvbmVudGVzXE5hdkJhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/ES/HomeES.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRVNcSG9tZUVTLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Faculty.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjdWx0eS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ELMAXPRO/source/repos/gradeManager/Pages/Home.razor]

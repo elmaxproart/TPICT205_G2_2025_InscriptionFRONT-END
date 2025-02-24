@@ -9,9 +9,9 @@
     <!-- Section Héro -->
     <section id="hero" class="hero-section">
         <div class="hero-content" data-aos="fade-right">
-            <h2>Bienvenue dans La platforme d'inscription</h2>
+            <h2>Bienvenue dans La plateforme d'inscription</h2>
             <p>Veuillez Vous rassurer d'avoire deja un matricule</p>
-            <button class="btn-primary" @onclick="NavigateToMatricule" data-aos="fade-up">S'inscrire'</button>
+            <button class="btn-primary" @onclick="NavigateToMatricule" data-aos="fade-up">S'inscrire</button>
         </div>
 
         <img src="/te.png" alt="Illustration" class="card-img" data-aos="zoom-in" />
@@ -25,7 +25,10 @@
             <h2>Connexion</h2>
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Mot de passe" required>
-            <button class="btn-primary">Se connecter</button>
+            <!-- Ajout de l'attribut id pour le bouton -->
+            <button id="loginButton" class="btn-primary">Se connecter</button>
+            <!-- Spinner de chargement caché par défaut -->
+            <div id="loginLoader" class="loader" style="display: none;"></div>
             <p>Pas encore de compte ? <a href="#" onclick="openRegisterModal()">S'inscrire</a></p>
         </div>
     </div>
@@ -48,6 +51,8 @@
             <span id="passwordError" style="color: red; display: none;">Les mots de passe ne correspondent pas.</span>
 
             <button class="btn-submit">S'enregistrer</button>
+            <!-- Spinner de chargement caché par défaut -->
+            <div id="loginLoader" class="loader" style="display: none;"></div>
 
             <p>Ou</p>
 
@@ -95,8 +100,46 @@
             </div>
         </div>
     </section>
+    <br /><br />
+    <section class="features-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Prérequis d'inscription</h2>
+            <div class="features-grid">
 
+                <div class="feature-card" data-aos="flip-right">
+                    <i class="fas fa-id-card"></i>
+                    <span>Pièce d'identité valide</span>
+                </div>
 
+                <div class="feature-card" data-aos="flip-up">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Relevés de notes des années précédentes</span>
+                </div>
+
+                <div class="feature-card" data-aos="flip-right">
+                    <i class="fas fa-receipt"></i>
+                    <span>Justificatif de paiement des frais d'inscription</span>
+                </div>
+
+                <div class="feature-card" data-aos="flip-left">
+                    <i class="fas fa-image"></i>
+                    <span>Photo d'identité numérique</span>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+    <br /><br /><br />
+    <!-- Section Héro -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content" data-aos="fade-right">
+            <h2>Dashboad d'administration</h2>
+            <p>seul les administrateurs du systeme peuvent y acceder</p>
+          
+        </div>
+
+        <img src="/35b0e146b59b62f94f0c0aa3fb1cd3a4.png" alt="Illustration" class="card-img" data-aos="zoom-in" />
+    </section>
     <!-- Section Contact -->
     <section id="contact" class="contact-section" data-aos="fade-up">
         <h2>Contactez-nous</h2>
@@ -113,7 +156,7 @@
     <footer class="footer">
         <p>&copy; 2025 GradeManager. Tous droits réservés.</p>
     </footer>
-
+ 
     <!-- AOS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
@@ -350,6 +393,7 @@
 </script>
 <!-- Styles des modales -->
 <style>
+
     /* Style de la modal */
     .modal {
         display: none;
@@ -525,275 +569,42 @@
     }
 
     }
+
+
+
+    /* Style de la modal existant … */
+
+    /* Ajout du style pour le spinner de chargement */
+    .loader {
+        border: 4px solid rgba(255, 255, 255, 0.2); /* couleur de fond translucide */
+        border-top: 4px solid #ff4081; /* couleur du spinner */
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto; /* centrer horizontalement */
+    }
+
+    @@keyframes spin {
+        0%
+
+    {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+    }
 </style>
-        <!-- Script pour gérer les modales -->
-<script>
-    function openLoginModal() {
-        document.getElementById("loginModal").style.display = "flex";
-        document.getElementById("registerModal").style.display = "none";
-    }
+<!--js-->
 
-    function closeLoginModal() {
-        document.getElementById("loginModal").style.display = "none";
-    }
-
-    function openRegisterModal() {
-        document.getElementById("registerModal").style.display = "flex";
-        document.getElementById("loginModal").style.display = "none";
-    }
-
-    function closeRegisterModal() {
-        document.getElementById("registerModal").style.display = "none";
-    }
-</script>
-@code {
+<script src="/fontawesome/js/home.js"></script>
+<!--c#-->
+    @code {
     private void NavigateToMatricule()
     {
         Navigation.NavigateTo("/faculty");
     }
 }
-<!----<script>
-    // Fonction de connexion de l'utilisateur
-    async function loginUser() {
-        const email = document.querySelector("#loginModal input[type='email']").value;
-        const password = document.querySelector("#loginModal input[type='password']").value;
-
-        const response = await fetch("https://localhost:7066/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        });
-
-        if (!response.ok) {
-            alert("Échec de connexion. Vérifiez vos identifiants.");
-            return;
-        }
-
-        const data = await response.json();
-        localStorage.setItem("token", data.token); // Stocker le token
-
-        // Récupérer le rôle de l'utilisateur
-        const userRole = await getUserRole(data.token);
-
-        // Redirection en fonction du rôle
-        if (userRole === "Admin") {
-            window.location.href = "/admin-dashboad";
-        } else {
-            window.location.href = "/student-dashboard";
-        }
-    }
-
-    // Fonction pour obtenir le rôle de l'utilisateur à partir du token
-    async function getUserRole(token) {
-        const response = await fetch("https://localhost:7066/api/auth/userRole", {
-            method: "GET",
-            headers: {
-                "Authorization": "Bearer " + token
-            }
-        });
-
-        if (!response.ok) {
-            console.error("Impossible de récupérer le rôle.");
-            return "User";
-        }
-
-        const data = await response.json();
-        return data.role;
-    }
-
-    // Vérifier si l'utilisateur est déjà connecté en vérifiant le token
-    function checkUserAuthentication() {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Rediriger l'utilisateur vers la page d'accueil s'il n'est pas connecté
-            window.location.href = "/Home.razor"; // Remplacez par votre page de connexion si nécessaire
-        }
-    }
-
-    // Vérification de la connexion à chaque chargement de la page
-    window.onload = checkUserAuthentication;
-
-    // Ajouter l'événement au bouton de connexion
-    document.querySelector("#loginModal button").addEventListener("click", loginUser);
-</script>-->
-
-<script>
-       async function loginUser() {
-        const email = document.querySelector("#loginModal input[type='email']").value;
-        const password = document.querySelector("#loginModal input[type='password']").value;
-
-        const response = await fetch("https://localhost:7066/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        });
-
-        if (!response.ok) {
-            alert("Échec de connexion. Vérifiez vos identifiants.");
-            return;
-        }
-
-        const data = await response.json();
-
-        // Vérifier si l'utilisateur a activé 2FA
-        const requires2FA = data.message === "Veuillez vérifier votre e-mail pour le code 2FA.";
-
-        if (requires2FA) {
-            // Sauvegarder l'email dans localStorage pour l'auto-remplir
-            localStorage.setItem("pendingEmail", email);
-
-            // Rediriger vers la page de vérification 2FA
-            window.location.href = "/verify-2fa";
-        } else {
-            // Stocker le token si pas de 2FA
-            localStorage.setItem("token", data.token);
-            document.cookie = "isAuthenticated=true; path=/"; // Cookie pour éviter le 2FA à chaque connexion
-
-            // Récupérer le rôle de l'utilisateur
-            const userRole = await getUserRole(data.token);
-
-            // Redirection selon le rôle
-            if (userRole === "Admin") {
-                window.location.href = "/admin-dashboard";
-            } else {
-                window.location.href = "/student-dashboard";
-            }
-        }
-    }
-
-    // Vérification du cookie lors du chargement de la page
-    function checkUserAuthentication() {
-        const token = localStorage.getItem("token");
-        const isAuthenticated = document.cookie.includes("isAuthenticated=true");
-
-        if (!token || !isAuthenticated) {
-            // Rediriger vers la page de connexion
-            window.location.href = "/Home.razor";
-        }
-    }
-
-    // Fonction de déconnexion (supprime le cookie et le token)
-    function logout() {
-        localStorage.removeItem("token");
-        document.cookie = "isAuthenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        window.location.href = "/Home.razor";
-    }
-
-    window.onload = checkUserAuthentication;
-    document.querySelector("#loginModal button").addEventListener("click", loginUser);
-
-
-    //verify 2fA
-        document.addEventListener("DOMContentLoaded", function () {
-        const emailField = document.querySelector("#email");
-        emailField.value = localStorage.getItem("pendingEmail") || ""; // Auto-remplissage de l'email
-    });
-
-    // Fonction pour vérifier le code 2FA
-    async function verify2FA() {
-        const email = document.querySelector("#email").value;
-        const code = document.querySelector("#code2fa").value;
-
-        const response = await fetch("https://localhost:7066/api/auth/verify-2fa", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, code })
-        });
-
-        if (!response.ok) {
-            alert("Code 2FA incorrect ou expiré !");
-            return;
-        }
-
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        document.cookie = "isAuthenticated=true; path=/"; // Stockage du cookie
-
-        // Récupérer le rôle et rediriger
-        const userRole = await getUserRole(data.token);
-        if (userRole === "Admin") {
-            window.location.href = "/admin-dashboard";
-        } else {
-            window.location.href = "/dashboard";
-        }
-    }
-
-
-</script>
-<script>
-        async function registerUser() {
-        const firstName = document.getElementById("firstName").value.trim();
-        const lastName = document.getElementById("lastName").value.trim();
-        const nickName = document.getElementById("nickName").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
-        const passwordError = document.getElementById("passwordError");
-
-        // Vérification des mots de passe
-        if (password !== confirmPassword) {
-            passwordError.style.display = "block";
-            return;
-        } else {
-            passwordError.style.display = "none";
-        }
-
-        // Objet utilisateur à envoyer à l'API
-        const userData = {
-            firstName,
-            lastName,
-            nickName,
-            email,
-            password
-        };
-
-        try {
-            const response = await fetch("https://localhost:7066/api/auth/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(userData)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                alert("Échec de l'inscription : " + (errorData.message || "Erreur inconnue"));
-                return;
-            }
-
-            alert("Inscription réussie ! Connectez-vous.");
-            closeRegisterModal();
-            openLoginModal();
-        } catch (error) {
-            console.error("Erreur lors de l'inscription :", error);
-            alert("Une erreur est survenue. Vérifiez votre connexion.");
-        }
-    }
-
-    // Ajout d'un écouteur d'événement pour le bouton d'inscription
-    document.querySelector('.btn-submit').addEventListener('click', function (event) {
-        event.preventDefault(); // Empêcher la soumission du formulaire par défaut
-        registerUser();
-    });
-
-    // Fonction pour fermer la modal d'inscription
-    function closeRegisterModal() {
-        document.getElementById("registerModal").style.display = "none";
-    }
-
-    // Fonction pour ouvrir la modal de connexion
-    function openLoginModal() {
-        document.getElementById("registerModal").style.display = "none";
-        document.getElementById("loginModal").style.display = "block"; // Assurez-vous que `loginModal` existe dans votre HTML
-    }
-
-</script>
-
-        

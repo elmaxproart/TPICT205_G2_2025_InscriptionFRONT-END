@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\3025792-etudiant-homme-avec-ordinateur-portable-online-education-concept-vectoriel (1).jpg"
     },
     {
+      "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\35b0e146b59b62f94f0c0aa3fb1cd3a4.png",
+      "PackagePath": "staticwebassets\\35b0e146b59b62f94f0c0aa3fb1cd3a4.png"
+    },
+    {
       "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
@@ -139,6 +143,10 @@
     {
       "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\fontawesome\\js\\fontawesome.min.js",
       "PackagePath": "staticwebassets\\fontawesome\\js\\fontawesome.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\fontawesome\\js\\home.js",
+      "PackagePath": "staticwebassets\\fontawesome\\js\\home.js"
     },
     {
       "Id": "C:\\Users\\ELMAXPRO\\source\\repos\\gradeManager\\wwwroot\\fontawesome\\js\\regular.js",

@@ -1,6 +1,15 @@
 ﻿@page "/inscription"
 @using gradeManager.Layout.Componentes
 @inject gradeManager.Service.inscription.IUE UeService
+
+
+
+<!-- Bootstrap CSS (si nécessaire) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<!-- Ajouter Bootstrap pour le style -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <div class="container-fluid page-container">
     <BreadCrumb />
     <div class="row">
@@ -76,6 +85,8 @@
 
                     <Uee/>
                     <button type="button" id="submitBtn" class="btn btn-light btn-block mt-4">S'inscrire</button>
+                    <!-- Spinner de chargement caché par défaut -->
+                    <div id="loginLoader" class="loader" style="display: none;"></div>
 
                    
                     
@@ -92,25 +103,53 @@
             </div>
         </div>
     </div>
-    <!-- Pop-up de confirmation -->
-    <div id="confirmationPopup" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title">Inscription réussie</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center">
-                    <p id="confirmationMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <script>
+        $(document).ready(function () {
+                    $("#submitBtn").click(function (event) {
+            event.preventDefault();
+
+            var matricule = $("#Matricule").val();
+            var inscriptionData = {
+                matricule: matricule,
+                nom: $("#Nom").val(),
+                prenom: $("#Prenom").val(),
+                dateNaissance: $("#DateNaissance").val(),
+                email: $("#Email").val(),
+                numero: $("#Numero").val(),
+                sexe: $("#Sexe").val(),
+                ueIds: $("input[name='ueIds']:checked").map(function () {
+                    return $(this).val();
+                }).get() // Récupère les IDs des UEs cochées
+            };
+                    inscriptionData.ueIds = $("input[name='ueIds']:checked").map(function () {
+            return $(this).val();
+        }).get();
+
+            console.log(inscriptionData); // Debugging pour voir si les UEs sont bien récupérées
+
+            $.ajax({
+                url: "https://localhost:7066/api/Inscription",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(inscriptionData),
+                success: function (response) {
+                    $("#confirmationMessage").text("L'étudiant " + inscriptionData.nom + " " + inscriptionData.prenom + " a été inscrit avec succès !");
+                    window.location.href = "/good/" + encodeURIComponent(matricule);
+                    $("#errorMessage").hide();
+                    $("#successMessage").show();
+                },
+                error: function (xhr) {
+                    console.error("Erreur AJAX:", xhr.responseText);
+                    $("#errorMessage").show().text("Erreur : " + (xhr.responseJSON ? xhr.responseJSON.message : xhr.responseText));
+                    $("#successMessage").hide();
+                }
+            });
+        });
+
+        });
+    </script>
+
 
    
 
@@ -129,43 +168,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
       $(document).ready(function () {
-        var apiUrl = "https://localhost:7066/api/UE";
+       
 
         // Fonction pour charger les UEs sans recharger la page
-        function chargerUEs() {
-            $("#UeIds").empty(); // Vide la liste avant de la recharger
-            $("#loadingIndicator").show(); // Affiche le spinner de chargement
-
-            $.ajax({
-                url: apiUrl,
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log("Données reçues :", data);
-
-                    if (data && data.length > 0) {
-                        $.each(data, function (index, ue) {
-                            $("#UeIds").append(
-                                `<option value="${ue.id}">${ue.libelle} (Coef: ${ue.coef})</option>`
-                            );
-                        });
-                    } else {
-                        $("#UeIds").append('<option disabled>Aucune UE disponible</option>');
-                    }
-
-                    $("#loadingIndicator").hide(); // Masque le spinner une fois les données chargées
-                },
-                error: function (xhr, status, error) {
-                    console.error("Erreur AJAX :", status, error);
-                    $("#UeIds").append('<option disabled>Erreur lors du chargement</option>');
-                    $("#loadingIndicator").hide(); // Masque le spinner en cas d'erreur
-                }
-            });
-        }
-
-        // Chargement initial des UEs
-        chargerUEs();
-
+      
         // Empêcher le rechargement de la page lors du clic sur le bouton
         $("#refreshUeBtn").click(function (event) {
             event.preventDefault(); // Empêche le rafraîchissement de la page
@@ -201,13 +207,13 @@ $("#submitBtn").click(function (event) {
     }  
 
     // Validation du numéro  
-    if (!/^\d{8}$/.test(numero)) {  
-        numeroErrorMessage.text("Veuiller entrer un numéro valide de 8 chiffres.").show();  
+    if (!/^\d{9}$/.test(numero)) {  
+        numeroErrorMessage.text("Veuiller entrer un numéro valide de 9 chiffres.").show();  
     }  
 
     // Si toutes les validations réussissent, continuez avec la soumission  
-    if (selectedUEs.length > 0 && emailPattern.test(email) && /^\d{8}$/.test(numero)) {  
-        console.log("Données envoyées : ", inscriptionData);  
+    if (selectedUEs.length > 0 && emailPattern.test(email) && /^\d{9}$/.test(numero)) {  
+//console.log("Données envoyées : ", inscriptionData);  
         // Autres actions ici pour soumettre le formulaire...  
     }  
 });
@@ -219,7 +225,7 @@ $("#submitBtn").click(function (event) {
 
      $(document).ready(function () {
          $("#submitBtn").click(function (event) {
-             event.preventDefault(); // Empêche le comportement par défaut du bouton (si c'est un bouton de soumission).
+             event.preventDefault(); 
 
              var inscriptionData = {
                  matricule: $("#Matricule").val(),
@@ -229,34 +235,15 @@ $("#submitBtn").click(function (event) {
                  email: $("#Email").val(),
                  numero: $("#Numero").val(),
                  sexe: $("#Sexe").val(),
-                ueIds: [] // Assurez-vous que vous obtenez un tableau.
+                ueIds: [] 
              };
 
-             console.log("Inscription Data:", inscriptionData); // Debug: afficher les données envoyées
+             console.log("Inscription Data:", inscriptionData); 
 
-             $.ajax({
-                 url: "https://localhost:7066/api/Inscription",
-                 type: "POST",
-                 contentType: "application/json",
-                 data: JSON.stringify(inscriptionData),
-                 success: function (response) {
-                     $("#confirmationMessage").text("L'étudiant " + inscriptionData.nom + " " + inscriptionData.prenom + " a été inscrit avec succès !");
-                     $("#confirmationPopup").modal("show");
-                     $("#errorMessage").hide();
-                     $("#successMessage").show(); // Affiche le message de succès
-                 },
-                 error: function (xhr) {
-                     console.error("Erreur AJAX:", xhr.responseText); // Debug: affiche l'erreur dans la console
-                     $("#errorMessage").show().text("Erreur : " + (xhr.responseJSON ? xhr.responseJSON.message : xhr.responseText));
-                     $("#successMessage").hide();
-                 }
-             });
+            
          });
      });
 </script>
-
-<!-- Ajouter Bootstrap pour le style -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- Ajouter CSS personnalisé pour le thème bleu sombre et violet dégradé -->
 <style>
@@ -313,8 +300,6 @@ $("#submitBtn").click(function (event) {
         color: black;
     }
 
-
-    /* Conteneur de la page avec fond animé en dégradé */
     .page-container {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #fff;
@@ -521,6 +506,32 @@ $("#submitBtn").click(function (event) {
             transform: translateY(-10px);
         }
     }
+
+
+
+
+    /* Style de la modal existant … */
+
+    /* Ajout du style pour le spinner de chargement */
+    .loader {
+        border: 4px solid rgba(255, 255, 255, 0.2); /* couleur de fond translucide */
+        border-top: 4px solid #ff4081; /* couleur du spinner */
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto; /* centrer horizontalement */
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 
         @code {
@@ -540,4 +551,30 @@ $("#submitBtn").click(function (event) {
 
 
 
-}
+}<!-- jQuery (s'assurer qu'il est bien chargé) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+      
+    document.getElementById('submitBtn').addEventListener('click', function(e) {
+        e.preventDefault(); 
+        document.getElementById('loginLoader').style.display = 'block';
+
+      
+        this.style.display = 'none';
+
+       
+        setTimeout(function() {
+          
+            document.getElementById('loginLoader').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'block';
+
+           
+            closeLoginModal();
+        }, 3000); 
+    });
+</script>

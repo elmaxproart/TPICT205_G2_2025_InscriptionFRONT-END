@@ -1,51 +1,30 @@
 ﻿<!-- Ajouter Bootstrap pour le style -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<!-- Ajouter CSS personnalisé pour le thème bleu sombre et violet dégradé -->
+<!-- Ajouter CSS personnalisé -->
 <style>
     body {
-        height: 100%;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: black;
+        color: white;
         background: linear-gradient(135deg, #1f1c2c, #6a0dad, #3a3f58);
-        animation: gradientAnimation 15s ease infinite;
     }
 
-    @@keyframes gradientAnimation {
-        0%
-
-    {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-
-    }
-
-    .form-control {
-        background-color: #34495e;
-        border: 1px solid #2c3e50;
+    .form-group label {
         color: #fff;
     }
 
-        .form-control:focus {
-            background-color: #5d6d7e;
-            border-color: #8e44ad;
-        }
-
-    .btn-light, .btn-secondary {
-        background-color: #8e44ad;
-        border-color: #8e44ad;
+    .checkbox-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+        max-height: 200px;
+        overflow-y: auto;
     }
 
-        .btn-light:hover, .btn-secondary:hover {
-            background-color: #9b59b6;
+        .checkbox-container label {
+            display: block;
+            padding: 5px;
+            cursor: pointer;
         }
 
     .footer {
@@ -54,44 +33,18 @@
         background: rgba(0, 0, 0, 0.4);
         font-size: 0.9rem;
     }
-
-    /* Liste déroulante pour les UEs */
-    .form-group label {
-        color: #fff;
-    }
-
-    .floating-image {
-        position: absolute;
-        top: 100px;
-        right: 150px;
-        width: 500px;
-        height: auto;
-        animation: floatAnimation 4s ease-in-out infinite;
-    }
-
-    @@keyframes floatAnimation {
-        0%, 100%
-
-    {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    }
 </style>
 
-<!-- Liste déroulante pour les UEs -->
+<!-- Liste des UEs sous forme de checkboxes -->
 <div class="form-group">
     <label for="UeIds" class="text-light text-title">UEs disponibles</label>
-    <select multiple class="form-control" id="UeIds">
-        <!-- Options ajoutées dynamiquement ici -->
-    </select>
-    <small class="form-text text-muted">Maintenez la touche Shift pour sélectionner plusieurs UEs.</small>
+    <div id="UeIds" class="checkbox-container">
+        <!-- Checkboxes ajoutées dynamiquement ici -->
+    </div>
+    <small class="form-text text-muted">Cochez les UEs que vous souhaitez sélectionner.</small>
     <div id="ueErrorMessage" class="text-danger" style="display: none;"></div>
 </div>
+
 <div id="loadingIndicator" style="display: none;">
     <img src="https://cdnjs.cloudflare.com/ajax/libs/loading.io/1.0.0/loader-spinner/3.svg" alt="Chargement..." />
 </div>
@@ -105,7 +58,7 @@
     $(document).ready(function () {
         var apiUrl = "https://localhost:7066/api/UE";
 
-        // Fonction pour charger les UEs sans recharger la page
+        // Fonction pour charger les UEs et générer les checkboxes
         function chargerUEs() {
             $("#UeIds").empty();
             $("#loadingIndicator").show();
@@ -118,16 +71,19 @@
                     if (data && data.length > 0) {
                         $.each(data, function (index, ue) {
                             $("#UeIds").append(
-                                `<option value="${ue.id}">${ue.libelle} (Coef: ${ue.coef})</option>`
+                                `<label>
+                                    <input type="checkbox" name="ueIds" value="${ue.id}">
+                                    ${ue.libelle} (Coef: ${ue.coef})
+                                </label>`
                             );
                         });
                     } else {
-                        $("#UeIds").append('<option disabled>Aucune UE disponible</option>');
+                        $("#UeIds").append('<div class="text-danger">Aucune UE disponible</div>');
                     }
                     $("#loadingIndicator").hide();
                 },
                 error: function () {
-                    $("#UeIds").append('<option disabled>Erreur lors du chargement</option>');
+                    $("#UeIds").append('<div class="text-danger">Erreur lors du chargement</div>');
                     $("#loadingIndicator").hide();
                 }
             });
@@ -144,43 +100,16 @@
         // Validation du bouton "S'inscrire"
         $("#submitBtn").click(function (event) {
             event.preventDefault();
-            var selectedUEs = $("#UeIds").val();
-            if (!selectedUEs || selectedUEs.length === 0) {
+            var selectedUEs = $("input[name='ueIds']:checked").map(function () {
+                return $(this).val();
+            }).get();
+
+            if (selectedUEs.length === 0) {
                 alert("Veuillez sélectionner au moins une UE.");
             }
         });
     });
-</script>
-<script>
-    $(document).ready(function () {
-        // Charger les traductions
-        var translations = {};
 
-        function loadTranslations() {
-            $.getJSON("translations.json", function (data) {
-                translations = data;
-                updateLanguage(localStorage.getItem("lang") || "fr"); // Charger la langue enregistrée
-            });
-        }
+    
 
-        // Fonction pour mettre à jour la langue
-        function updateLanguage(lang) {
-            if (!translations[lang]) return;
-
-            $("#languageSelector").val(lang);
-            $(".text-title").text(translations[lang].title);
-            $("#refreshUeBtn").text(translations[lang].refresh);
-            $("#loadingIndicator img").attr("alt", translations[lang].loading);
-
-            localStorage.setItem("lang", lang); // Enregistrer la langue
-        }
-
-        // Événement changement de langue
-        $("#languageSelector").change(function () {
-            var selectedLang = $(this).val();
-            updateLanguage(selectedLang);
-        });
-
-        loadTranslations(); // Charger les traductions au démarrage
-    });
 </script>

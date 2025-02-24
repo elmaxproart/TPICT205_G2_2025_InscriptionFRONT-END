@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\FR\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

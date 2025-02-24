@@ -136,9 +136,11 @@
             // Rediriger l'utilisateur vers son tableau de bord
             document.cookie = "isAuthenticated=true; path=/";
             alert("✅ 2FA vérifié avec succès !");
-            window.location.href = data.role === "Admin" ? "/admin-dashboard" : "/student-dashboard";
+            window.location.href = data.role === "Admin" ? "/admin-dashboard" : "/dashboard";
         } else {
             alert("⚠️ Code 2FA invalide ou expiré !");
         }
+
+        
     }
 </script>

@@ -1,0 +1,94 @@
+﻿@page "/good/{matricule}"
+@inject NavigationManager Navigation
+
+<h3>Inscription Réussie</h3>
+
+@if (!string.IsNullOrEmpty(Matricule))
+{
+    <p>L'étudiant avec le matricule <strong>@Matricule</strong> a été inscrit avec succès !</p>
+    <a href="https://localhost:7066/api/Inscription/fiche-pdf/@Matricule" class="btn btn-primary animated-btn" target="_blank">
+        📄 Télécharger ma fiche
+    </a>
+}
+else
+{
+    <p>Une erreur s'est produite. Matricule non trouvé.</p>
+}
+
+@code {
+    [Parameter] public string? Matricule { get; set; }
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #00c6ff, #6a11cb); /* Blue to Violet gradient */
+        animation: backgroundAnimation 10s infinite alternate; /* Smooth gradient animation */
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        background-color: #1e90ff;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #6a11cb;
+            transform: scale(1.1);
+        }
+
+    .animated-btn {
+        animation: btnAnimation 1s ease-out infinite alternate;
+    }
+
+    /* Background gradient animation */
+    @@keyframes backgroundAnimation {
+        0%
+
+    {
+        background: linear-gradient(to right, #00c6ff, #6a11cb);
+    }
+
+    100% {
+        background: linear-gradient(to right, #6a11cb, #00c6ff);
+    }
+
+    }
+
+    /* Button animation */
+    @@keyframes btnAnimation {
+        0%
+
+    {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    }
+</style>

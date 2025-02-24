@@ -1,4 +1,5 @@
 wwwroot\3025792-etudiant-homme-avec-ordinateur-portable-online-education-concept-vectoriel (1).jpg
+wwwroot\35b0e146b59b62f94f0c0aa3fb1cd3a4.png
 wwwroot\css\app.css
 wwwroot\css\bootstrap\bootstrap.min.css
 wwwroot\css\bootstrap\bootstrap.min.css.map
@@ -30,6 +31,7 @@ wwwroot\fontawesome\js\conflict-detection.js
 wwwroot\fontawesome\js\conflict-detection.min.js
 wwwroot\fontawesome\js\fontawesome.js
 wwwroot\fontawesome\js\fontawesome.min.js
+wwwroot\fontawesome\js\home.js
 wwwroot\fontawesome\js\regular.js
 wwwroot\fontawesome\js\regular.min.js
 wwwroot\fontawesome\js\solid.js

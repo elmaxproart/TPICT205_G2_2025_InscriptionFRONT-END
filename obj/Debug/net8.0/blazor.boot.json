@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "gradeManager",
   "resources": {
-    "hash": "sha256-zNY5Wtk28oAEMMHUC7IKQB9ffb4zNBNPDQART8yMtM4=",
+    "hash": "sha256-xTVCOnRTSBZA/9HJuNcn0ik+mboSYj+L2KeRPY6Jw/Q=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-B6DNRvFeCUi3jbx9uKpuj+hV9cN0KG4RdZj1FgBZwj8="
     },
@@ -220,10 +220,10 @@
       "mscorlib.wasm": "sha256-QoC5hTKpDNO6efLnEvYwV9OJBXvYRq8/1yGhNZKiNCw=",
       "netstandard.wasm": "sha256-JT2F4bYWJpaSGq+iD0ITLpWxsDhMUjhqje9RpBtTg7w=",
       "System.Private.CoreLib.wasm": "sha256-fvIPBcvgvsRuWrKi2LGQsLYvcKUSnyIuBUsE3LJu/0Y=",
-      "gradeManager.wasm": "sha256-qp/RPpasZhVW8mDPBC79u+LSxDiIqRs+KPd1CFYeTzc="
+      "gradeManager.wasm": "sha256-ozaJIhlNpw27vRNCOYNHhqV1pdrzkDqbHaG8rDSgMko="
     },
     "pdb": {
-      "gradeManager.pdb": "sha256-Bftm6cHrJkHrQ0Bwoov8nRRtJxmr5E8J+GOFs9cLUOc="
+      "gradeManager.pdb": "sha256-hSTOhBHhHOWTm6pI05PYubX0swa7AaYI+cDtv4XFIPU="
     }
   },
   "cacheBootResources": true,

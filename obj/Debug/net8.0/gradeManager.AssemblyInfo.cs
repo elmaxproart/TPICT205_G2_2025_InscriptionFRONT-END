@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gradeManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32553a4122a2934fc49a4d2990a95e8799ebe15b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29c7f8466362ad62c927fa2ac6ead11cf6655518")]
 [assembly: System.Reflection.AssemblyProductAttribute("gradeManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gradeManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

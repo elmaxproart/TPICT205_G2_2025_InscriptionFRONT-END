@@ -1,11 +1,12 @@
 ﻿@page "/matricule"
 @inject NavigationManager Navigation
 @using gradeManager.Layout.Componentes
-<!-- Inclure jQuery pour AJAX -->
+
+<!-- Inclure jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="container mt-5 text-center">
-    <BreadCrumb/>
+    <BreadCrumb />
     <h2 class="text-light">Vérification du Matricule</h2>
     <div class="form-group">
         <label for="Matricule" class="text-light">Matricule</label>
@@ -19,20 +20,23 @@
 <script>
     function verifierMatricule() {
         let matricule = $("#Matricule").val().trim();
-        let regex = /^[0-9]{2}[a-zA-Z]{1}[0-9]{4}$/;  // Vérification du format attendu
+        let regex = /^[0-9]{2}[a-zA-Z]{1}[0-9]{4}$/;
 
         if (!regex.test(matricule)) {
-            $("#message").html('<div class="alert alert-danger">Format incorrect. Ex: 23u2324</div>');
+            $("#message").html('<div class="alert alert-danger">Format incorrect. Exemple: 23u2324</div>');
             return;
         }
 
         $("#message").html('<div class="text-light">Vérification en cours...</div>');
 
         $.ajax({
-            url: `https://localhost:7066/api/Etudiants/rechercher/${matricule}`,  // Correction URL
+            url: `https://localhost:7066/api/Etudiants/rechercher/${matricule}`,  // Vérifie si l'API est en HTTP ou HTTPS
             type: "GET",
             success: function(response) {
+                console.log("Réponse API :", response); // Debugging
+
                 if (response && response.matricule) {
+                    console.log("Redirection vers :", `/temps?matricule=${matricule}`);
                     window.location.href = `/temps?matricule=${matricule}`;
                 } else {
                     $("#message").html('<div class="alert alert-danger">Matricule invalide ou inexistant.</div>');
@@ -40,7 +44,7 @@
             },
             error: function(xhr) {
                 if (xhr.status === 404) {
-                    $("#message").html('<div class="alert alert-danger">Matricule non trouvé.</div>');
+                    $("#message").html('<div class="alert alert-danger">Matricule non trouvé ou aucune classe associée.</div>');
                 } else {
                     $("#message").html('<div class="alert alert-danger">Erreur de connexion à l\'API.</div>');
                 }
@@ -49,7 +53,6 @@
     }
 </script>
 
-<!-- Styles améliorés -->
 <style>
     body {
         background: linear-gradient(135deg, #1f1c2c, #6a0dad, #3a3f58);

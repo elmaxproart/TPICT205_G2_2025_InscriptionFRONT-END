@@ -1,9 +1,13 @@
 self.assetsManifest = {
-  "version": "P/upcuu4",
+  "version": "4BXbezK5",
   "assets": [
     {
       "hash": "sha256-oOTIrdhMppK2R4XM4tSMITvUszbtHTzjE2oy0WtvNvY=",
       "url": "3025792-etudiant-homme-avec-ordinateur-portable-online-education-concept-vectoriel (1).jpg"
+    },
+    {
+      "hash": "sha256-xXxp6j1Zp9j4Aju7OUmS+HByYOC9NBiZhEyi7QZqdt4=",
+      "url": "35b0e146b59b62f94f0c0aa3fb1cd3a4.png"
     },
     {
       "hash": "sha256-W1OqRV83imd3SG/v4PAlCa5m/3RA9n5ysXT7G46jKKc=",
@@ -806,7 +810,7 @@ self.assetsManifest = {
       "url": "_framework/WindowsBase.wasm"
     },
     {
-      "hash": "sha256-epQBjJg7PulsArSdbThOr/AHIsp8Xp2468IsGSMHxnc=",
+      "hash": "sha256-9oKhkHQQzbE6i0INgaRLDUju4VPfXkLm13GmXHJNpIA=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -842,11 +846,11 @@ self.assetsManifest = {
       "url": "_framework/emcc-props.json"
     },
     {
-      "hash": "sha256-Bftm6cHrJkHrQ0Bwoov8nRRtJxmr5E8J+GOFs9cLUOc=",
+      "hash": "sha256-hSTOhBHhHOWTm6pI05PYubX0swa7AaYI+cDtv4XFIPU=",
       "url": "_framework/gradeManager.pdb"
     },
     {
-      "hash": "sha256-qp/RPpasZhVW8mDPBC79u+LSxDiIqRs+KPd1CFYeTzc=",
+      "hash": "sha256-ozaJIhlNpw27vRNCOYNHhqV1pdrzkDqbHaG8rDSgMko=",
       "url": "_framework/gradeManager.wasm"
     },
     {
@@ -996,6 +1000,10 @@ self.assetsManifest = {
     {
       "hash": "sha256-QIXYHR23iKD9m7Z51owIelRno5/WEE0+A62Qb8obtq8=",
       "url": "fontawesome/js/fontawesome.min.js"
+    },
+    {
+      "hash": "sha256-CtFbCqtRvD+bJ9d4kTDq+HIXmXM8+xIQTvHws+nfGqQ=",
+      "url": "fontawesome/js/home.js"
     },
     {
       "hash": "sha256-QkJaxunI3v/nkFMOyGS2n57ITOy6Yz+dz9A8FLSQrb0=",

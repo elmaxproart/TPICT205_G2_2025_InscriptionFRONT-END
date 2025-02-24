@@ -1094,6 +1094,6 @@ C:\Users\ELMAXPRO\source\repos\gradeManager\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\webcil\Newtonsoft.Json.wasm
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\xumturbk8f-qkbufwhni2.gz
 C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\scopedcss\Pages\Inscription.razor.rz.scp.css
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\3gyvytwgrc-i60reajsoa.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\lsg9u3t1ea-3qtmx1arp4.gz
-C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\c15bjx9pys-evxs2ecwwy.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\3gyvytwgrc-hb8dmqaxos.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\lsg9u3t1ea-ffhxpn5hrz.gz
+C:\Users\ELMAXPRO\source\repos\gradeManager\obj\Debug\net8.0\compressed\c15bjx9pys-q3bbyhbews.gz

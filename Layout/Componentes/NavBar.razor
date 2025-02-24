@@ -142,13 +142,29 @@
         }
     }
 
-    // Logout function
+
     function logout() {
         localStorage.removeItem("token");
         document.cookie = "isAuthenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        window.location.href = "/Home.razor"; // Redirect to Home page after logout
+        window.location.href = "/Home.razor"; 
     }
 
-    // Call checkUserAuthentication when the page is loaded
+    
     window.onload = checkUserAuthentication;
+
+   
+
+    document.getElementById('languageSelector').addEventListener('change', function() {
+        const selectedLanguage = this.value;
+        if (selectedLanguage === "en") {
+            window.location.href = "/home-en"; 
+        } else if (selectedLanguage === "es") {
+            window.location.href = "/home-es"; 
+        } else {
+            window.location.href = "/"; 
+        }
+    });
+
+
+
 </script>
